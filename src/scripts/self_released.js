@@ -13,15 +13,15 @@ var t = d3
   .ease(d3.easeLinear)
 
 let labels = [
-  'XL',
   'Self-released',
   'Columbia',
-  'Cash Money',
-  'Epic',
-  'RCA',
   'Interscope',
+  'XL',
+  'RCA',
+  'Republic',
   'Def Jam',
-  '4AD'
+  'Cash Money',
+  'Epic'
 ]
 
 function responsivefy(svg) {
@@ -86,7 +86,7 @@ const yPositionScale = d3
 
 const colorScale = d3.scaleSequential([2010, 2040], d3.interpolateRainbow)
 
-Promise.all([d3.csv(require('../data/p4k_top200_labels_2010.csv'))]).then(ready)
+Promise.all([d3.csv(require('../data/top200_labels.csv'))]).then(ready)
 
 function ready([datapoints]) {
   // console.log(colorScale.range())
@@ -103,6 +103,7 @@ function ready([datapoints]) {
     .attr('r', width / 50)
     .attr('fill', 'lightgrey')
     .attr('stroke', 'grey')
+    .style('opacity', 0.4)
   // .text(d => d.rank)
 
   gs.append('text')
@@ -115,17 +116,17 @@ function ready([datapoints]) {
     .attr('alignment-baseline', 'middle')
     .style('opacity', '0')
 
-  gs.on('mouseenter', function() {
+  gs.on('mouseover', function() {
     d3.select(this)
       .select('text')
-      // .transition(t)
       .style('opacity', '1')
   })
 
-  gs.on('mouseout', function() {
+  gs.on('mouseleave', function() {
     d3.select(this)
       .select('text')
-      .transition(t)
+      .transition()
+      .duration(300)
       .style('opacity', '0')
   })
 
@@ -136,16 +137,11 @@ function ready([datapoints]) {
     .attr('y', margin.bottom / 2)
     .attr('text-anchor', 'middle')
     .attr('alignment-baseline', 'middle')
-    .text('Label')
     .attr('font-size', margin.bottom * 0.5)
-
-  // colorsTransition()
-
-  // .attr()
-  // .attr('height', height / 20)
+  circleTransition(0)
 }
 
-let idx = 0
+let idx = 1
 d3.interval(function() {
   circleTransition(idx)
   idx = (idx + 1) % labels.length
@@ -153,7 +149,12 @@ d3.interval(function() {
 
 function circleTransition(idx) {
   let newOnes = svg.selectAll('g').filter(function(d) {
-    return [d[0], d[1], d[2]].includes(labels[idx])
+    if ([d[0], d[1], d[2]].includes(labels[idx])) {
+      if (idx == 1) {
+        console.log(d)
+      }
+      return true
+    }
   })
 
   let oldOnes = svg.selectAll('g').filter(function(d) {
@@ -171,11 +172,11 @@ function circleTransition(idx) {
         .remove()
       d3.select(this)
         .style('opacity', 0)
-        .text(labels[idx])
+        .text(`${labels[idx]} (${newOnes._groups[0].length} songs)`)
         .transition(t)
         .style('opacity', 1)
         .transition()
-        .delay(1500)
+        .delay(1000)
     })
 
   newOnes

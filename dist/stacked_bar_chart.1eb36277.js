@@ -29531,34 +29531,27 @@ function ready(_ref) {
   var _ref2 = _slicedToArray(_ref, 1),
       datapoints = _ref2[0];
 
-  // console.log('Data read in:', datapoints)
   var nested = d3.nest().key(function (d) {
     return +d.year;
-  }).entries(datapoints); // console.log('nested', nested)
-
+  }).entries(datapoints);
   var numbers = d3.range(d3.max(nested, function (d) {
     return d.values.length;
   }));
   var stackedYears = d3.stack().keys(numbers).value(function (d, i) {
     return i < d.values.length ? 1 : 0;
-  })(nested); // console.log('stacked years', stackedYears)
-
+  })(nested);
   var xPositionScale = d3.scaleBand().rangeRound([0, width]).paddingInner(0.05).align(0.1);
-  var yPositionScale = d3.scaleLinear().rangeRound([height, 0]); // console.log('range', yPositionScale.range())
-
+  var yPositionScale = d3.scaleLinear().rangeRound([height, 0]);
   xPositionScale.domain(nested.map(function (d) {
     return d.key;
   }).sort());
   yPositionScale.domain([0, d3.max(nested, function (d) {
     return d.values.length;
-  })]).nice(); // console.log('domain', yPositionScale.domain())
-
+  })]).nice();
   colorScale.domain([0, 30]);
   svg.append('g').selectAll('g').data(stackedYears).enter().append('g').attr('stroke', 'white').selectAll('rect').data(function (d, i) {
-    // console.log('each group sees', d, i)
     return d;
   }).enter().append('rect').attr('x', function (d) {
-    // console.log(d)
     return xPositionScale(d.data.key);
   }).attr('y', function (d) {
     return yPositionScale(d[1]);
@@ -29566,31 +29559,9 @@ function ready(_ref) {
     return yPositionScale(d[0]) - yPositionScale(d[1]);
   }).attr('width', xPositionScale.bandwidth()).attr('class', function (d) {
     return 'y' + d.data.key;
-  }) // .attr('id', function(d, i) {
-  //   console.log('each rect sees', d, i)
-  //   return i < d.data.values.length
-  //     ? d.data.values[i].song.replace(/ |\.|\[|\]/g, '')
-  //     : ''
-  // })
-  .attr('fill', function (d) {
+  }).attr('fill', function (d) {
     return colorScale(+d.data.key);
-  }); // for (var j = 0; j < nested.length; j++) {
-  //   // console.log(`.y${nested[j].key}`)
-  //   d3.selectAll(`.y${nested[j].key}`).each(function(d, i) {
-  //     d3.select(this)
-  //       .attr(
-  //         'id',
-  //         i < d.data.values.length
-  //           ? d.data.values[i].song.replace(/ |\.|\[|\]/g, '').toLowerCase()
-  //           : ''
-  //       )
-  //       .on('mouseover', function(d, i) {
-  //         console.log(d)
-  //       })
-  //   })
-  // }
-  // console.log(`.y${nested[j].key}`)
-
+  });
   d3.selectAll('rect').each(function (d, i) {
     var idx = Math.floor(i / 10);
     d3.select(this).attr('id', idx < d.data.values.length ? d.data.values[idx].song.replace(/ |\.|\[|\]/g, '').toLowerCase() : '');
@@ -29630,24 +29601,19 @@ function doTooltips(_ref3) {
     var s = d.data.song;
     var a = d.data.artist;
     var r = d.data.rank;
-    var i = imgs[r]; // console.log(r)
-    // ${i}
-    // console.log(i)
-
+    var i = imgs[r];
     return "<p class='important'>".concat(s, " by ").concat(a, "</p><p>(Rank #").concat(r, ")</p><img src=\"").concat(i, "\">");
   });
   /* Invoke the tip in the context of your visualization */
 
   svg.call(tip);
-  svg.selectAll('rect').data(updated).on('mouseover', tip.show).on('mouseout', tip.hide); // .on('touch', tip.show)
-  // .on('touchend', tip.hide)
+  svg.selectAll('rect').data(updated).on('mouseover', tip.show).on('mouseout', tip.hide);
 }
 
 function doSmallTTs(_ref5) {
   var _ref6 = _slicedToArray(_ref5, 1),
       imgs = _ref6[0];
 
-  // console.log('hello')
   var updated = d3.selectAll('rect').data().map(function (d, i) {
     return {
       0: d[0],
@@ -29660,20 +29626,15 @@ function doSmallTTs(_ref5) {
     var s = d.data.song;
     var a = d.data.artist;
     var r = d.data.rank;
-    var i = imgs[r]; // console.log(r)
-    // ${i}
-    // console.log(i)
-
+    var i = imgs[r];
     return "<p class='important'>".concat(s, " by ").concat(a, "</p><p>(Rank #").concat(r, ")</p><img src=\"").concat(i, "\">");
   }).style('left', function (d) {
-    // console.log(d)
     return '0px';
   }).style('top', '0px');
   /* Invoke the tip in the context of your visualization */
 
   svg.call(tip);
-  svg.selectAll('rect').data(updated).on('mouseover', tip.show).on('mouseout', tip.hide); // .on('touch', tip.show)
-  // .on('touchend', tip.hide)
+  svg.selectAll('rect').data(updated).on('mouseover', tip.show).on('mouseout', tip.hide);
 }
 },{"d3":"../node_modules/d3/index.js","d3-tip":"../node_modules/d3-tip/index.js","../data/p4k_top200_2010.csv":"data/p4k_top200_2010.csv","../images/covers/*.jpg":"images/covers/*.jpg"}]},{},["scripts/stacked_bar_chart.js"], null)
 //# sourceMappingURL=/stacked_bar_chart.1eb36277.js.map

@@ -28473,8 +28473,8 @@ Object.keys(_d3Zoom).forEach(function (key) {
     }
   });
 });
-},{"./dist/package.js":"../node_modules/d3/dist/package.js","d3-array":"../node_modules/d3-array/src/index.js","d3-axis":"../node_modules/d3-axis/src/index.js","d3-brush":"../node_modules/d3-brush/src/index.js","d3-chord":"../node_modules/d3-chord/src/index.js","d3-collection":"../node_modules/d3-collection/src/index.js","d3-color":"../node_modules/d3-color/src/index.js","d3-contour":"../node_modules/d3-contour/src/index.js","d3-dispatch":"../node_modules/d3-dispatch/src/index.js","d3-drag":"../node_modules/d3-drag/src/index.js","d3-dsv":"../node_modules/d3-dsv/src/index.js","d3-ease":"../node_modules/d3-ease/src/index.js","d3-fetch":"../node_modules/d3-fetch/src/index.js","d3-force":"../node_modules/d3-force/src/index.js","d3-format":"../node_modules/d3-format/src/index.js","d3-geo":"../node_modules/d3-geo/src/index.js","d3-hierarchy":"../node_modules/d3-hierarchy/src/index.js","d3-interpolate":"../node_modules/d3-interpolate/src/index.js","d3-path":"../node_modules/d3-path/src/index.js","d3-polygon":"../node_modules/d3-polygon/src/index.js","d3-quadtree":"../node_modules/d3-quadtree/src/index.js","d3-random":"../node_modules/d3-random/src/index.js","d3-scale":"../node_modules/d3-scale/src/index.js","d3-scale-chromatic":"../node_modules/d3-scale-chromatic/src/index.js","d3-selection":"../node_modules/d3-selection/src/index.js","d3-shape":"../node_modules/d3-shape/src/index.js","d3-time":"../node_modules/d3-time/src/index.js","d3-time-format":"../node_modules/d3-time-format/src/index.js","d3-timer":"../node_modules/d3-timer/src/index.js","d3-transition":"../node_modules/d3-transition/src/index.js","d3-voronoi":"../node_modules/d3-voronoi/src/index.js","d3-zoom":"../node_modules/d3-zoom/src/index.js"}],"data/p4k_top200_labels_2010.csv":[function(require,module,exports) {
-module.exports = "/p4k_top200_labels_2010.d68b6773.csv";
+},{"./dist/package.js":"../node_modules/d3/dist/package.js","d3-array":"../node_modules/d3-array/src/index.js","d3-axis":"../node_modules/d3-axis/src/index.js","d3-brush":"../node_modules/d3-brush/src/index.js","d3-chord":"../node_modules/d3-chord/src/index.js","d3-collection":"../node_modules/d3-collection/src/index.js","d3-color":"../node_modules/d3-color/src/index.js","d3-contour":"../node_modules/d3-contour/src/index.js","d3-dispatch":"../node_modules/d3-dispatch/src/index.js","d3-drag":"../node_modules/d3-drag/src/index.js","d3-dsv":"../node_modules/d3-dsv/src/index.js","d3-ease":"../node_modules/d3-ease/src/index.js","d3-fetch":"../node_modules/d3-fetch/src/index.js","d3-force":"../node_modules/d3-force/src/index.js","d3-format":"../node_modules/d3-format/src/index.js","d3-geo":"../node_modules/d3-geo/src/index.js","d3-hierarchy":"../node_modules/d3-hierarchy/src/index.js","d3-interpolate":"../node_modules/d3-interpolate/src/index.js","d3-path":"../node_modules/d3-path/src/index.js","d3-polygon":"../node_modules/d3-polygon/src/index.js","d3-quadtree":"../node_modules/d3-quadtree/src/index.js","d3-random":"../node_modules/d3-random/src/index.js","d3-scale":"../node_modules/d3-scale/src/index.js","d3-scale-chromatic":"../node_modules/d3-scale-chromatic/src/index.js","d3-selection":"../node_modules/d3-selection/src/index.js","d3-shape":"../node_modules/d3-shape/src/index.js","d3-time":"../node_modules/d3-time/src/index.js","d3-time-format":"../node_modules/d3-time-format/src/index.js","d3-timer":"../node_modules/d3-timer/src/index.js","d3-transition":"../node_modules/d3-transition/src/index.js","d3-voronoi":"../node_modules/d3-voronoi/src/index.js","d3-zoom":"../node_modules/d3-zoom/src/index.js"}],"data/top200_labels.csv":[function(require,module,exports) {
+module.exports = "/top200_labels.728368cc.csv";
 },{}],"scripts/self_released.js":[function(require,module,exports) {
 "use strict";
 
@@ -28504,7 +28504,7 @@ var margin = {
 var width = 700 - margin.left - margin.right;
 var height = 7 / 7 * width - margin.top - margin.bottom;
 var t = d3.transition().duration(1000).ease(d3.easeLinear);
-var labels = ['XL', 'Self-released', 'Columbia', 'Cash Money', 'Epic', 'RCA', 'Interscope', 'Def Jam', '4AD'];
+var labels = ['Self-released', 'Columbia', 'Interscope', 'XL', 'RCA', 'Republic', 'Def Jam', 'Cash Money', 'Epic'];
 
 function responsivefy(svg) {
   // get container + svg aspect ratio
@@ -28542,7 +28542,7 @@ var yPositionScale = d3.scaleLinear().domain([0, 19]).range([0, height]); // .pa
 //   .range(cDom)
 
 var colorScale = d3.scaleSequential([2010, 2040], d3.interpolateRainbow);
-Promise.all([d3.csv(require('../data/p4k_top200_labels_2010.csv'))]).then(ready);
+Promise.all([d3.csv(require('../data/top200_labels.csv'))]).then(ready);
 
 function ready(_ref) {
   var _ref2 = _slicedToArray(_ref, 1),
@@ -28555,7 +28555,7 @@ function ready(_ref) {
     return xPositionScale((+d.rank - 1) % 10);
   }).attr('cy', function (d) {
     return yPositionScale(Math.floor((+d.rank - 1) / 10));
-  }).attr('r', width / 50).attr('fill', 'lightgrey').attr('stroke', 'grey'); // .text(d => d.rank)
+  }).attr('r', width / 50).attr('fill', 'lightgrey').attr('stroke', 'grey').style('opacity', 0.4); // .text(d => d.rank)
 
   gs.append('text').attr('x', function (d) {
     return xPositionScale((+d.rank - 1) % 10);
@@ -28565,19 +28565,17 @@ function ready(_ref) {
   .text(function (d) {
     return "".concat(d.rank);
   }).attr('font-size', width / 50).attr('text-anchor', 'middle').attr('alignment-baseline', 'middle').style('opacity', '0');
-  gs.on('mouseenter', function () {
-    d3.select(this).select('text') // .transition(t)
-    .style('opacity', '1');
+  gs.on('mouseover', function () {
+    d3.select(this).select('text').style('opacity', '1');
   });
-  gs.on('mouseout', function () {
-    d3.select(this).select('text').transition(t).style('opacity', '0');
+  gs.on('mouseleave', function () {
+    d3.select(this).select('text').transition().duration(300).style('opacity', '0');
   });
-  bottom.append('text').attr('id', 'label').attr('x', width / 2).attr('y', margin.bottom / 2).attr('text-anchor', 'middle').attr('alignment-baseline', 'middle').text('Label').attr('font-size', margin.bottom * 0.5); // colorsTransition()
-  // .attr()
-  // .attr('height', height / 20)
+  bottom.append('text').attr('id', 'label').attr('x', width / 2).attr('y', margin.bottom / 2).attr('text-anchor', 'middle').attr('alignment-baseline', 'middle').attr('font-size', margin.bottom * 0.5);
+  circleTransition(0);
 }
 
-var idx = 0;
+var idx = 1;
 d3.interval(function () {
   circleTransition(idx);
   idx = (idx + 1) % labels.length;
@@ -28585,14 +28583,20 @@ d3.interval(function () {
 
 function circleTransition(idx) {
   var newOnes = svg.selectAll('g').filter(function (d) {
-    return [d[0], d[1], d[2]].includes(labels[idx]);
+    if ([d[0], d[1], d[2]].includes(labels[idx])) {
+      if (idx == 1) {
+        console.log(d);
+      }
+
+      return true;
+    }
   });
   var oldOnes = svg.selectAll('g').filter(function (d) {
     return ![d[0], d[1], d[2]].includes(labels[idx]);
   });
   bottom.select('#label').transition(t).duration(1000).on('start', function () {
     var t = d3.active(this).style('opacity', 0).remove();
-    d3.select(this).style('opacity', 0).text(labels[idx]).transition(t).style('opacity', 1).transition().delay(1500);
+    d3.select(this).style('opacity', 0).text("".concat(labels[idx], " (").concat(newOnes._groups[0].length, " songs)")).transition(t).style('opacity', 1).transition().delay(1000);
   });
   newOnes.select('circle').transition(t).duration(1000).attr('fill', function (d) {
     return colorScale(d.year);
@@ -28601,5 +28605,5 @@ function circleTransition(idx) {
 
   oldOnes.select('circle').attr('fill', 'lightgrey').style('opacity', 0.4);
 }
-},{"d3":"../node_modules/d3/index.js","../data/p4k_top200_labels_2010.csv":"data/p4k_top200_labels_2010.csv"}]},{},["scripts/self_released.js"], null)
+},{"d3":"../node_modules/d3/index.js","../data/top200_labels.csv":"data/top200_labels.csv"}]},{},["scripts/self_released.js"], null)
 //# sourceMappingURL=/self_released.c40203c9.js.map

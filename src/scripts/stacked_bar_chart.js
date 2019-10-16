@@ -55,12 +55,10 @@ const colorScale = d3.scaleSequential([2010, 2019], d3.interpolateRainbow)
 Promise.all([d3.csv(require('../data/p4k_top200_2010.csv'))]).then(ready)
 
 function ready([datapoints]) {
-  // console.log('Data read in:', datapoints)
   let nested = d3
     .nest()
     .key(d => +d.year)
     .entries(datapoints)
-  // console.log('nested', nested)
 
   let numbers = d3.range(d3.max(nested, d => d.values.length))
 
@@ -68,7 +66,6 @@ function ready([datapoints]) {
     .stack()
     .keys(numbers)
     .value((d, i) => (i < d.values.length ? 1 : 0))(nested)
-  // console.log('stacked years', stackedYears)
 
   var xPositionScale = d3
     .scaleBand()
@@ -77,7 +74,6 @@ function ready([datapoints]) {
     .align(0.1)
 
   var yPositionScale = d3.scaleLinear().rangeRound([height, 0])
-  // console.log('range', yPositionScale.range())
 
   xPositionScale.domain(
     nested
@@ -87,7 +83,6 @@ function ready([datapoints]) {
       .sort()
   )
   yPositionScale.domain([0, d3.max(nested, d => d.values.length)]).nice()
-  // console.log('domain', yPositionScale.domain())
 
   colorScale.domain([0, 30])
 
@@ -100,13 +95,11 @@ function ready([datapoints]) {
     .attr('stroke', 'white')
     .selectAll('rect')
     .data(function(d, i) {
-      // console.log('each group sees', d, i)
       return d
     })
     .enter()
     .append('rect')
     .attr('x', function(d) {
-      // console.log(d)
       return xPositionScale(d.data.key)
     })
     .attr('y', function(d) {
@@ -117,33 +110,10 @@ function ready([datapoints]) {
     })
     .attr('width', xPositionScale.bandwidth())
     .attr('class', d => 'y' + d.data.key)
-    // .attr('id', function(d, i) {
-    //   console.log('each rect sees', d, i)
-    //   return i < d.data.values.length
-    //     ? d.data.values[i].song.replace(/ |\.|\[|\]/g, '')
-    //     : ''
-    // })
     .attr('fill', function(d) {
       return colorScale(+d.data.key)
     })
 
-  // for (var j = 0; j < nested.length; j++) {
-  //   // console.log(`.y${nested[j].key}`)
-  //   d3.selectAll(`.y${nested[j].key}`).each(function(d, i) {
-  //     d3.select(this)
-  //       .attr(
-  //         'id',
-  //         i < d.data.values.length
-  //           ? d.data.values[i].song.replace(/ |\.|\[|\]/g, '').toLowerCase()
-  //           : ''
-  //       )
-  //       .on('mouseover', function(d, i) {
-  //         console.log(d)
-  //       })
-  //   })
-  // }
-
-  // console.log(`.y${nested[j].key}`)
   d3.selectAll('rect').each(function(d, i) {
     const idx = Math.floor(i / 10)
     d3.select(this).attr(
@@ -218,9 +188,7 @@ function doTooltips([imgs]) {
       const a = d.data.artist
       const r = d.data.rank
       const i = imgs[r]
-      // console.log(r)
-      // ${i}
-      // console.log(i)
+
       return `<p class='important'>${s} by ${a}</p><p>(Rank #${r})</p><img src="${i}">`
     })
 
@@ -231,12 +199,9 @@ function doTooltips([imgs]) {
     .data(updated)
     .on('mouseover', tip.show)
     .on('mouseout', tip.hide)
-  // .on('touch', tip.show)
-  // .on('touchend', tip.hide)
 }
 
 function doSmallTTs([imgs]) {
-  // console.log('hello')
   let updated = d3
     .selectAll('rect')
     .data()
@@ -257,13 +222,10 @@ function doSmallTTs([imgs]) {
       const a = d.data.artist
       const r = d.data.rank
       const i = imgs[r]
-      // console.log(r)
-      // ${i}
-      // console.log(i)
+
       return `<p class='important'>${s} by ${a}</p><p>(Rank #${r})</p><img src="${i}">`
     })
     .style('left', function(d) {
-      // console.log(d)
       return '0px'
     })
     .style('top', '0px')
@@ -275,6 +237,4 @@ function doSmallTTs([imgs]) {
     .data(updated)
     .on('mouseover', tip.show)
     .on('mouseout', tip.hide)
-  // .on('touch', tip.show)
-  // .on('touchend', tip.hide)
 }
