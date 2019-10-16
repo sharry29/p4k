@@ -203,14 +203,14 @@ p.caption {
     background-color: rgba(0, 0, 0, 0.5);
     background-image: linear-gradient(
         to left,
-        rgb(255, 120, 71, 0.9),
-        rgb(110, 64, 170, 0.9)
+        rgb(255, 120, 71, 0.8),
+        rgb(110, 64, 170, 0.8)
     );
     color: #fff;
     border-radius: 0px;
     pointer-events: none;
     overflow-wrap: break-word;
-    max-width: 200px;
+    max-width: 150px;
 }
 
 p.important {

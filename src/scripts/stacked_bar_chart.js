@@ -3,17 +3,45 @@ import d3Tip from 'd3-tip'
 // import imgs from './../images/'
 d3.tip = d3Tip
 
-const margin = { top: 50, left: 50, right: 50, bottom: 50 }
+const margin = { top: 50, left: 60, right: 60, bottom: 50 }
 const width = 700 - margin.left - margin.right
 const height = (4 / 7) * width - margin.top - margin.bottom
 
-window.addEventListener('resize', ready)
+function responsivefy(svg) {
+  // get container + svg aspect ratio
+  var container = d3.select(svg.node().parentNode),
+    width = parseInt(svg.style('width')),
+    height = parseInt(svg.style('height')),
+    aspect = width / height
+
+  // add viewBox and preserveAspectRatio properties,
+  // and call resize so that svg resizes on inital page load
+  svg
+    .attr('viewBox', '0 0 ' + width + ' ' + height)
+    .attr('perserveAspectRatio', 'xMinYMid')
+    .call(resize)
+
+  // to register multiple listeners for same event type,
+  // you need to add namespace, i.e., 'click.foo'
+  // necessary if you call invoke this function for multiple svgs
+  // api docs: https://github.com/mbostock/d3/wiki/Selections#on
+  d3.select(window).on('resize.' + container.attr('id'), resize)
+
+  // get width of container and resize svg to fit it
+  function resize() {
+    var targetWidth = parseInt(container.style('width'))
+    svg.attr('width', targetWidth)
+    svg.attr('height', Math.round(targetWidth / aspect))
+    // svg.selectAll('.d3-tip').style('max-width', targetWidth / 2)
+  }
+}
 
 const svg = d3
   .select('#chart-1')
   .append('svg')
   .attr('height', height + margin.top + margin.bottom)
   .attr('width', width + margin.left + margin.right)
+  .call(responsivefy)
   .append('g')
   .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
@@ -24,18 +52,15 @@ const xPositionScale = d3
   .paddingOuter(0.1)
 const colorScale = d3.scaleSequential([2010, 2019], d3.interpolateRainbow)
 
-Promise.all([
-  d3.csv(require('../data/p4k_top200_2010.csv')),
-  require('../images/covers/*.jpg')
-]).then(ready)
+Promise.all([d3.csv(require('../data/p4k_top200_2010.csv'))]).then(ready)
 
-function ready([datapoints, imgs]) {
+function ready([datapoints]) {
   // console.log('Data read in:', datapoints)
   let nested = d3
     .nest()
     .key(d => +d.year)
     .entries(datapoints)
-  console.log('nested', nested)
+  // console.log('nested', nested)
 
   let numbers = d3.range(d3.max(nested, d => d.values.length))
 
@@ -43,7 +68,7 @@ function ready([datapoints, imgs]) {
     .stack()
     .keys(numbers)
     .value((d, i) => (i < d.values.length ? 1 : 0))(nested)
-  console.log('stacked years', stackedYears)
+  // console.log('stacked years', stackedYears)
 
   var xPositionScale = d3
     .scaleBand()
@@ -52,7 +77,7 @@ function ready([datapoints, imgs]) {
     .align(0.1)
 
   var yPositionScale = d3.scaleLinear().rangeRound([height, 0])
-  console.log('range', yPositionScale.range())
+  // console.log('range', yPositionScale.range())
 
   xPositionScale.domain(
     nested
@@ -62,7 +87,7 @@ function ready([datapoints, imgs]) {
       .sort()
   )
   yPositionScale.domain([0, d3.max(nested, d => d.values.length)]).nice()
-  console.log('domain', yPositionScale.domain())
+  // console.log('domain', yPositionScale.domain())
 
   colorScale.domain([0, 30])
 
@@ -160,10 +185,19 @@ function ready([datapoints, imgs]) {
     .data(stackedYears)
     .attr('fill', (_, i) => colorScale(i))
     .attr('font-size', 14)
-  doTooltips(imgs)
+
+  var windowWidth = parseInt(
+    d3.select(svg.node().parentNode.parentNode).style('width')
+  )
+
+  if (windowWidth > 600) {
+    Promise.all([require('../images/covers/*.jpg')]).then(doTooltips)
+  } else {
+    Promise.all([require('../images/covers/*.jpg')]).then(doSmallTTs)
+  }
 }
 
-function doTooltips(imgs) {
+function doTooltips([imgs]) {
   let updated = d3
     .selectAll('rect')
     .data()
@@ -184,7 +218,7 @@ function doTooltips(imgs) {
       const a = d.data.artist
       const r = d.data.rank
       const i = imgs[r]
-      console.log(r)
+      // console.log(r)
       // ${i}
       // console.log(i)
       return `<p class='important'>${s} by ${a}</p><p>(Rank #${r})</p><img src="${i}">`
@@ -197,4 +231,50 @@ function doTooltips(imgs) {
     .data(updated)
     .on('mouseover', tip.show)
     .on('mouseout', tip.hide)
+  // .on('touch', tip.show)
+  // .on('touchend', tip.hide)
+}
+
+function doSmallTTs([imgs]) {
+  // console.log('hello')
+  let updated = d3
+    .selectAll('rect')
+    .data()
+    .map(function(d, i) {
+      return {
+        0: d[0],
+        1: d[1],
+        year: d.data.key,
+        data: d.data.values[Math.floor(i / 10)]
+      }
+    })
+
+  let tip = d3
+    .tip()
+    .attr('class', 'd3-tip')
+    .html(function(d) {
+      const s = d.data.song
+      const a = d.data.artist
+      const r = d.data.rank
+      const i = imgs[r]
+      // console.log(r)
+      // ${i}
+      // console.log(i)
+      return `<p class='important'>${s} by ${a}</p><p>(Rank #${r})</p><img src="${i}">`
+    })
+    .style('left', function(d) {
+      // console.log(d)
+      return '0px'
+    })
+    .style('top', '0px')
+
+  /* Invoke the tip in the context of your visualization */
+  svg.call(tip)
+  svg
+    .selectAll('rect')
+    .data(updated)
+    .on('mouseover', tip.show)
+    .on('mouseout', tip.hide)
+  // .on('touch', tip.show)
+  // .on('touchend', tip.hide)
 }
