@@ -28473,1007 +28473,1633 @@ Object.keys(_d3Zoom).forEach(function (key) {
     }
   });
 });
-},{"./dist/package.js":"../node_modules/d3/dist/package.js","d3-array":"../node_modules/d3-array/src/index.js","d3-axis":"../node_modules/d3-axis/src/index.js","d3-brush":"../node_modules/d3-brush/src/index.js","d3-chord":"../node_modules/d3-chord/src/index.js","d3-collection":"../node_modules/d3-collection/src/index.js","d3-color":"../node_modules/d3-color/src/index.js","d3-contour":"../node_modules/d3-contour/src/index.js","d3-dispatch":"../node_modules/d3-dispatch/src/index.js","d3-drag":"../node_modules/d3-drag/src/index.js","d3-dsv":"../node_modules/d3-dsv/src/index.js","d3-ease":"../node_modules/d3-ease/src/index.js","d3-fetch":"../node_modules/d3-fetch/src/index.js","d3-force":"../node_modules/d3-force/src/index.js","d3-format":"../node_modules/d3-format/src/index.js","d3-geo":"../node_modules/d3-geo/src/index.js","d3-hierarchy":"../node_modules/d3-hierarchy/src/index.js","d3-interpolate":"../node_modules/d3-interpolate/src/index.js","d3-path":"../node_modules/d3-path/src/index.js","d3-polygon":"../node_modules/d3-polygon/src/index.js","d3-quadtree":"../node_modules/d3-quadtree/src/index.js","d3-random":"../node_modules/d3-random/src/index.js","d3-scale":"../node_modules/d3-scale/src/index.js","d3-scale-chromatic":"../node_modules/d3-scale-chromatic/src/index.js","d3-selection":"../node_modules/d3-selection/src/index.js","d3-shape":"../node_modules/d3-shape/src/index.js","d3-time":"../node_modules/d3-time/src/index.js","d3-time-format":"../node_modules/d3-time-format/src/index.js","d3-timer":"../node_modules/d3-timer/src/index.js","d3-transition":"../node_modules/d3-transition/src/index.js","d3-voronoi":"../node_modules/d3-voronoi/src/index.js","d3-zoom":"../node_modules/d3-zoom/src/index.js"}],"../node_modules/d3-tip/index.js":[function(require,module,exports) {
-"use strict";
+},{"./dist/package.js":"../node_modules/d3/dist/package.js","d3-array":"../node_modules/d3-array/src/index.js","d3-axis":"../node_modules/d3-axis/src/index.js","d3-brush":"../node_modules/d3-brush/src/index.js","d3-chord":"../node_modules/d3-chord/src/index.js","d3-collection":"../node_modules/d3-collection/src/index.js","d3-color":"../node_modules/d3-color/src/index.js","d3-contour":"../node_modules/d3-contour/src/index.js","d3-dispatch":"../node_modules/d3-dispatch/src/index.js","d3-drag":"../node_modules/d3-drag/src/index.js","d3-dsv":"../node_modules/d3-dsv/src/index.js","d3-ease":"../node_modules/d3-ease/src/index.js","d3-fetch":"../node_modules/d3-fetch/src/index.js","d3-force":"../node_modules/d3-force/src/index.js","d3-format":"../node_modules/d3-format/src/index.js","d3-geo":"../node_modules/d3-geo/src/index.js","d3-hierarchy":"../node_modules/d3-hierarchy/src/index.js","d3-interpolate":"../node_modules/d3-interpolate/src/index.js","d3-path":"../node_modules/d3-path/src/index.js","d3-polygon":"../node_modules/d3-polygon/src/index.js","d3-quadtree":"../node_modules/d3-quadtree/src/index.js","d3-random":"../node_modules/d3-random/src/index.js","d3-scale":"../node_modules/d3-scale/src/index.js","d3-scale-chromatic":"../node_modules/d3-scale-chromatic/src/index.js","d3-selection":"../node_modules/d3-selection/src/index.js","d3-shape":"../node_modules/d3-shape/src/index.js","d3-time":"../node_modules/d3-time/src/index.js","d3-time-format":"../node_modules/d3-time-format/src/index.js","d3-timer":"../node_modules/d3-timer/src/index.js","d3-transition":"../node_modules/d3-transition/src/index.js","d3-voronoi":"../node_modules/d3-voronoi/src/index.js","d3-zoom":"../node_modules/d3-zoom/src/index.js"}],"../node_modules/events/events.js":[function(require,module,exports) {
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
+var R = typeof Reflect === 'object' ? Reflect : null;
+var ReflectApply = R && typeof R.apply === 'function' ? R.apply : function ReflectApply(target, receiver, args) {
+  return Function.prototype.apply.call(target, receiver, args);
+};
+var ReflectOwnKeys;
+
+if (R && typeof R.ownKeys === 'function') {
+  ReflectOwnKeys = R.ownKeys;
+} else if (Object.getOwnPropertySymbols) {
+  ReflectOwnKeys = function ReflectOwnKeys(target) {
+    return Object.getOwnPropertyNames(target).concat(Object.getOwnPropertySymbols(target));
+  };
+} else {
+  ReflectOwnKeys = function ReflectOwnKeys(target) {
+    return Object.getOwnPropertyNames(target);
+  };
+}
+
+function ProcessEmitWarning(warning) {
+  if (console && console.warn) console.warn(warning);
+}
+
+var NumberIsNaN = Number.isNaN || function NumberIsNaN(value) {
+  return value !== value;
+};
+
+function EventEmitter() {
+  EventEmitter.init.call(this);
+}
+
+module.exports = EventEmitter; // Backwards-compat with node 0.10.x
+
+EventEmitter.EventEmitter = EventEmitter;
+EventEmitter.prototype._events = undefined;
+EventEmitter.prototype._eventsCount = 0;
+EventEmitter.prototype._maxListeners = undefined; // By default EventEmitters will print a warning if more than 10 listeners are
+// added to it. This is a useful default which helps finding memory leaks.
+
+var defaultMaxListeners = 10;
+Object.defineProperty(EventEmitter, 'defaultMaxListeners', {
+  enumerable: true,
+  get: function () {
+    return defaultMaxListeners;
+  },
+  set: function (arg) {
+    if (typeof arg !== 'number' || arg < 0 || NumberIsNaN(arg)) {
+      throw new RangeError('The value of "defaultMaxListeners" is out of range. It must be a non-negative number. Received ' + arg + '.');
+    }
+
+    defaultMaxListeners = arg;
+  }
 });
-exports.default = _default;
 
-var _d3Collection = require("d3-collection");
+EventEmitter.init = function () {
+  if (this._events === undefined || this._events === Object.getPrototypeOf(this)._events) {
+    this._events = Object.create(null);
+    this._eventsCount = 0;
+  }
 
-var _d3Selection = require("d3-selection");
+  this._maxListeners = this._maxListeners || undefined;
+}; // Obviously not all Emitters should be limited to 10. This function allows
+// that to be increased. Set to zero for unlimited.
 
+
+EventEmitter.prototype.setMaxListeners = function setMaxListeners(n) {
+  if (typeof n !== 'number' || n < 0 || NumberIsNaN(n)) {
+    throw new RangeError('The value of "n" is out of range. It must be a non-negative number. Received ' + n + '.');
+  }
+
+  this._maxListeners = n;
+  return this;
+};
+
+function $getMaxListeners(that) {
+  if (that._maxListeners === undefined) return EventEmitter.defaultMaxListeners;
+  return that._maxListeners;
+}
+
+EventEmitter.prototype.getMaxListeners = function getMaxListeners() {
+  return $getMaxListeners(this);
+};
+
+EventEmitter.prototype.emit = function emit(type) {
+  var args = [];
+
+  for (var i = 1; i < arguments.length; i++) args.push(arguments[i]);
+
+  var doError = type === 'error';
+  var events = this._events;
+  if (events !== undefined) doError = doError && events.error === undefined;else if (!doError) return false; // If there is no 'error' event listener then throw.
+
+  if (doError) {
+    var er;
+    if (args.length > 0) er = args[0];
+
+    if (er instanceof Error) {
+      // Note: The comments on the `throw` lines are intentional, they show
+      // up in Node's output if this results in an unhandled exception.
+      throw er; // Unhandled 'error' event
+    } // At least give some kind of context to the user
+
+
+    var err = new Error('Unhandled error.' + (er ? ' (' + er.message + ')' : ''));
+    err.context = er;
+    throw err; // Unhandled 'error' event
+  }
+
+  var handler = events[type];
+  if (handler === undefined) return false;
+
+  if (typeof handler === 'function') {
+    ReflectApply(handler, this, args);
+  } else {
+    var len = handler.length;
+    var listeners = arrayClone(handler, len);
+
+    for (var i = 0; i < len; ++i) ReflectApply(listeners[i], this, args);
+  }
+
+  return true;
+};
+
+function _addListener(target, type, listener, prepend) {
+  var m;
+  var events;
+  var existing;
+
+  if (typeof listener !== 'function') {
+    throw new TypeError('The "listener" argument must be of type Function. Received type ' + typeof listener);
+  }
+
+  events = target._events;
+
+  if (events === undefined) {
+    events = target._events = Object.create(null);
+    target._eventsCount = 0;
+  } else {
+    // To avoid recursion in the case that type === "newListener"! Before
+    // adding it to the listeners, first emit "newListener".
+    if (events.newListener !== undefined) {
+      target.emit('newListener', type, listener.listener ? listener.listener : listener); // Re-assign `events` because a newListener handler could have caused the
+      // this._events to be assigned to a new object
+
+      events = target._events;
+    }
+
+    existing = events[type];
+  }
+
+  if (existing === undefined) {
+    // Optimize the case of one listener. Don't need the extra array object.
+    existing = events[type] = listener;
+    ++target._eventsCount;
+  } else {
+    if (typeof existing === 'function') {
+      // Adding the second element, need to change to array.
+      existing = events[type] = prepend ? [listener, existing] : [existing, listener]; // If we've already got an array, just append.
+    } else if (prepend) {
+      existing.unshift(listener);
+    } else {
+      existing.push(listener);
+    } // Check for listener leak
+
+
+    m = $getMaxListeners(target);
+
+    if (m > 0 && existing.length > m && !existing.warned) {
+      existing.warned = true; // No error code for this since it is a Warning
+      // eslint-disable-next-line no-restricted-syntax
+
+      var w = new Error('Possible EventEmitter memory leak detected. ' + existing.length + ' ' + String(type) + ' listeners ' + 'added. Use emitter.setMaxListeners() to ' + 'increase limit');
+      w.name = 'MaxListenersExceededWarning';
+      w.emitter = target;
+      w.type = type;
+      w.count = existing.length;
+      ProcessEmitWarning(w);
+    }
+  }
+
+  return target;
+}
+
+EventEmitter.prototype.addListener = function addListener(type, listener) {
+  return _addListener(this, type, listener, false);
+};
+
+EventEmitter.prototype.on = EventEmitter.prototype.addListener;
+
+EventEmitter.prototype.prependListener = function prependListener(type, listener) {
+  return _addListener(this, type, listener, true);
+};
+
+function onceWrapper() {
+  var args = [];
+
+  for (var i = 0; i < arguments.length; i++) args.push(arguments[i]);
+
+  if (!this.fired) {
+    this.target.removeListener(this.type, this.wrapFn);
+    this.fired = true;
+    ReflectApply(this.listener, this.target, args);
+  }
+}
+
+function _onceWrap(target, type, listener) {
+  var state = {
+    fired: false,
+    wrapFn: undefined,
+    target: target,
+    type: type,
+    listener: listener
+  };
+  var wrapped = onceWrapper.bind(state);
+  wrapped.listener = listener;
+  state.wrapFn = wrapped;
+  return wrapped;
+}
+
+EventEmitter.prototype.once = function once(type, listener) {
+  if (typeof listener !== 'function') {
+    throw new TypeError('The "listener" argument must be of type Function. Received type ' + typeof listener);
+  }
+
+  this.on(type, _onceWrap(this, type, listener));
+  return this;
+};
+
+EventEmitter.prototype.prependOnceListener = function prependOnceListener(type, listener) {
+  if (typeof listener !== 'function') {
+    throw new TypeError('The "listener" argument must be of type Function. Received type ' + typeof listener);
+  }
+
+  this.prependListener(type, _onceWrap(this, type, listener));
+  return this;
+}; // Emits a 'removeListener' event if and only if the listener was removed.
+
+
+EventEmitter.prototype.removeListener = function removeListener(type, listener) {
+  var list, events, position, i, originalListener;
+
+  if (typeof listener !== 'function') {
+    throw new TypeError('The "listener" argument must be of type Function. Received type ' + typeof listener);
+  }
+
+  events = this._events;
+  if (events === undefined) return this;
+  list = events[type];
+  if (list === undefined) return this;
+
+  if (list === listener || list.listener === listener) {
+    if (--this._eventsCount === 0) this._events = Object.create(null);else {
+      delete events[type];
+      if (events.removeListener) this.emit('removeListener', type, list.listener || listener);
+    }
+  } else if (typeof list !== 'function') {
+    position = -1;
+
+    for (i = list.length - 1; i >= 0; i--) {
+      if (list[i] === listener || list[i].listener === listener) {
+        originalListener = list[i].listener;
+        position = i;
+        break;
+      }
+    }
+
+    if (position < 0) return this;
+    if (position === 0) list.shift();else {
+      spliceOne(list, position);
+    }
+    if (list.length === 1) events[type] = list[0];
+    if (events.removeListener !== undefined) this.emit('removeListener', type, originalListener || listener);
+  }
+
+  return this;
+};
+
+EventEmitter.prototype.off = EventEmitter.prototype.removeListener;
+
+EventEmitter.prototype.removeAllListeners = function removeAllListeners(type) {
+  var listeners, events, i;
+  events = this._events;
+  if (events === undefined) return this; // not listening for removeListener, no need to emit
+
+  if (events.removeListener === undefined) {
+    if (arguments.length === 0) {
+      this._events = Object.create(null);
+      this._eventsCount = 0;
+    } else if (events[type] !== undefined) {
+      if (--this._eventsCount === 0) this._events = Object.create(null);else delete events[type];
+    }
+
+    return this;
+  } // emit removeListener for all listeners on all events
+
+
+  if (arguments.length === 0) {
+    var keys = Object.keys(events);
+    var key;
+
+    for (i = 0; i < keys.length; ++i) {
+      key = keys[i];
+      if (key === 'removeListener') continue;
+      this.removeAllListeners(key);
+    }
+
+    this.removeAllListeners('removeListener');
+    this._events = Object.create(null);
+    this._eventsCount = 0;
+    return this;
+  }
+
+  listeners = events[type];
+
+  if (typeof listeners === 'function') {
+    this.removeListener(type, listeners);
+  } else if (listeners !== undefined) {
+    // LIFO order
+    for (i = listeners.length - 1; i >= 0; i--) {
+      this.removeListener(type, listeners[i]);
+    }
+  }
+
+  return this;
+};
+
+function _listeners(target, type, unwrap) {
+  var events = target._events;
+  if (events === undefined) return [];
+  var evlistener = events[type];
+  if (evlistener === undefined) return [];
+  if (typeof evlistener === 'function') return unwrap ? [evlistener.listener || evlistener] : [evlistener];
+  return unwrap ? unwrapListeners(evlistener) : arrayClone(evlistener, evlistener.length);
+}
+
+EventEmitter.prototype.listeners = function listeners(type) {
+  return _listeners(this, type, true);
+};
+
+EventEmitter.prototype.rawListeners = function rawListeners(type) {
+  return _listeners(this, type, false);
+};
+
+EventEmitter.listenerCount = function (emitter, type) {
+  if (typeof emitter.listenerCount === 'function') {
+    return emitter.listenerCount(type);
+  } else {
+    return listenerCount.call(emitter, type);
+  }
+};
+
+EventEmitter.prototype.listenerCount = listenerCount;
+
+function listenerCount(type) {
+  var events = this._events;
+
+  if (events !== undefined) {
+    var evlistener = events[type];
+
+    if (typeof evlistener === 'function') {
+      return 1;
+    } else if (evlistener !== undefined) {
+      return evlistener.length;
+    }
+  }
+
+  return 0;
+}
+
+EventEmitter.prototype.eventNames = function eventNames() {
+  return this._eventsCount > 0 ? ReflectOwnKeys(this._events) : [];
+};
+
+function arrayClone(arr, n) {
+  var copy = new Array(n);
+
+  for (var i = 0; i < n; ++i) copy[i] = arr[i];
+
+  return copy;
+}
+
+function spliceOne(list, index) {
+  for (; index + 1 < list.length; index++) list[index] = list[index + 1];
+
+  list.pop();
+}
+
+function unwrapListeners(arr) {
+  var ret = new Array(arr.length);
+
+  for (var i = 0; i < ret.length; ++i) {
+    ret[i] = arr[i].listener || arr[i];
+  }
+
+  return ret;
+}
+},{}],"../node_modules/util/support/isBufferBrowser.js":[function(require,module,exports) {
+module.exports = function isBuffer(arg) {
+  return arg && typeof arg === 'object'
+    && typeof arg.copy === 'function'
+    && typeof arg.fill === 'function'
+    && typeof arg.readUInt8 === 'function';
+}
+},{}],"../node_modules/util/node_modules/inherits/inherits_browser.js":[function(require,module,exports) {
+if (typeof Object.create === 'function') {
+  // implementation from standard node.js 'util' module
+  module.exports = function inherits(ctor, superCtor) {
+    ctor.super_ = superCtor
+    ctor.prototype = Object.create(superCtor.prototype, {
+      constructor: {
+        value: ctor,
+        enumerable: false,
+        writable: true,
+        configurable: true
+      }
+    });
+  };
+} else {
+  // old school shim for old browsers
+  module.exports = function inherits(ctor, superCtor) {
+    ctor.super_ = superCtor
+    var TempCtor = function () {}
+    TempCtor.prototype = superCtor.prototype
+    ctor.prototype = new TempCtor()
+    ctor.prototype.constructor = ctor
+  }
+}
+
+},{}],"../node_modules/process/browser.js":[function(require,module,exports) {
+
+// shim for using process in browser
+var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+  throw new Error('setTimeout has not been defined');
+}
+
+function defaultClearTimeout() {
+  throw new Error('clearTimeout has not been defined');
+}
+
+(function () {
+  try {
+    if (typeof setTimeout === 'function') {
+      cachedSetTimeout = setTimeout;
+    } else {
+      cachedSetTimeout = defaultSetTimout;
+    }
+  } catch (e) {
+    cachedSetTimeout = defaultSetTimout;
+  }
+
+  try {
+    if (typeof clearTimeout === 'function') {
+      cachedClearTimeout = clearTimeout;
+    } else {
+      cachedClearTimeout = defaultClearTimeout;
+    }
+  } catch (e) {
+    cachedClearTimeout = defaultClearTimeout;
+  }
+})();
+
+function runTimeout(fun) {
+  if (cachedSetTimeout === setTimeout) {
+    //normal enviroments in sane situations
+    return setTimeout(fun, 0);
+  } // if setTimeout wasn't available but was latter defined
+
+
+  if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+    cachedSetTimeout = setTimeout;
+    return setTimeout(fun, 0);
+  }
+
+  try {
+    // when when somebody has screwed with setTimeout but no I.E. maddness
+    return cachedSetTimeout(fun, 0);
+  } catch (e) {
+    try {
+      // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+      return cachedSetTimeout.call(null, fun, 0);
+    } catch (e) {
+      // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+      return cachedSetTimeout.call(this, fun, 0);
+    }
+  }
+}
+
+function runClearTimeout(marker) {
+  if (cachedClearTimeout === clearTimeout) {
+    //normal enviroments in sane situations
+    return clearTimeout(marker);
+  } // if clearTimeout wasn't available but was latter defined
+
+
+  if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+    cachedClearTimeout = clearTimeout;
+    return clearTimeout(marker);
+  }
+
+  try {
+    // when when somebody has screwed with setTimeout but no I.E. maddness
+    return cachedClearTimeout(marker);
+  } catch (e) {
+    try {
+      // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+      return cachedClearTimeout.call(null, marker);
+    } catch (e) {
+      // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+      // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+      return cachedClearTimeout.call(this, marker);
+    }
+  }
+}
+
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+  if (!draining || !currentQueue) {
+    return;
+  }
+
+  draining = false;
+
+  if (currentQueue.length) {
+    queue = currentQueue.concat(queue);
+  } else {
+    queueIndex = -1;
+  }
+
+  if (queue.length) {
+    drainQueue();
+  }
+}
+
+function drainQueue() {
+  if (draining) {
+    return;
+  }
+
+  var timeout = runTimeout(cleanUpNextTick);
+  draining = true;
+  var len = queue.length;
+
+  while (len) {
+    currentQueue = queue;
+    queue = [];
+
+    while (++queueIndex < len) {
+      if (currentQueue) {
+        currentQueue[queueIndex].run();
+      }
+    }
+
+    queueIndex = -1;
+    len = queue.length;
+  }
+
+  currentQueue = null;
+  draining = false;
+  runClearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+  var args = new Array(arguments.length - 1);
+
+  if (arguments.length > 1) {
+    for (var i = 1; i < arguments.length; i++) {
+      args[i - 1] = arguments[i];
+    }
+  }
+
+  queue.push(new Item(fun, args));
+
+  if (queue.length === 1 && !draining) {
+    runTimeout(drainQueue);
+  }
+}; // v8 likes predictible objects
+
+
+function Item(fun, array) {
+  this.fun = fun;
+  this.array = array;
+}
+
+Item.prototype.run = function () {
+  this.fun.apply(null, this.array);
+};
+
+process.title = 'browser';
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) {
+  return [];
+};
+
+process.binding = function (name) {
+  throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () {
+  return '/';
+};
+
+process.chdir = function (dir) {
+  throw new Error('process.chdir is not supported');
+};
+
+process.umask = function () {
+  return 0;
+};
+},{}],"../node_modules/util/util.js":[function(require,module,exports) {
+var process = require("process");
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+var getOwnPropertyDescriptors = Object.getOwnPropertyDescriptors || function getOwnPropertyDescriptors(obj) {
+  var keys = Object.keys(obj);
+  var descriptors = {};
+
+  for (var i = 0; i < keys.length; i++) {
+    descriptors[keys[i]] = Object.getOwnPropertyDescriptor(obj, keys[i]);
+  }
+
+  return descriptors;
+};
+
+var formatRegExp = /%[sdj%]/g;
+
+exports.format = function (f) {
+  if (!isString(f)) {
+    var objects = [];
+
+    for (var i = 0; i < arguments.length; i++) {
+      objects.push(inspect(arguments[i]));
+    }
+
+    return objects.join(' ');
+  }
+
+  var i = 1;
+  var args = arguments;
+  var len = args.length;
+  var str = String(f).replace(formatRegExp, function (x) {
+    if (x === '%%') return '%';
+    if (i >= len) return x;
+
+    switch (x) {
+      case '%s':
+        return String(args[i++]);
+
+      case '%d':
+        return Number(args[i++]);
+
+      case '%j':
+        try {
+          return JSON.stringify(args[i++]);
+        } catch (_) {
+          return '[Circular]';
+        }
+
+      default:
+        return x;
+    }
+  });
+
+  for (var x = args[i]; i < len; x = args[++i]) {
+    if (isNull(x) || !isObject(x)) {
+      str += ' ' + x;
+    } else {
+      str += ' ' + inspect(x);
+    }
+  }
+
+  return str;
+}; // Mark that a method should not be used.
+// Returns a modified function which warns once by default.
+// If --no-deprecation is set, then it is a no-op.
+
+
+exports.deprecate = function (fn, msg) {
+  if (typeof process !== 'undefined' && process.noDeprecation === true) {
+    return fn;
+  } // Allow for deprecating things in the process of starting up.
+
+
+  if (typeof process === 'undefined') {
+    return function () {
+      return exports.deprecate(fn, msg).apply(this, arguments);
+    };
+  }
+
+  var warned = false;
+
+  function deprecated() {
+    if (!warned) {
+      if (process.throwDeprecation) {
+        throw new Error(msg);
+      } else if (process.traceDeprecation) {
+        console.trace(msg);
+      } else {
+        console.error(msg);
+      }
+
+      warned = true;
+    }
+
+    return fn.apply(this, arguments);
+  }
+
+  return deprecated;
+};
+
+var debugs = {};
+var debugEnviron;
+
+exports.debuglog = function (set) {
+  if (isUndefined(debugEnviron)) debugEnviron = undefined || '';
+  set = set.toUpperCase();
+
+  if (!debugs[set]) {
+    if (new RegExp('\\b' + set + '\\b', 'i').test(debugEnviron)) {
+      var pid = process.pid;
+
+      debugs[set] = function () {
+        var msg = exports.format.apply(exports, arguments);
+        console.error('%s %d: %s', set, pid, msg);
+      };
+    } else {
+      debugs[set] = function () {};
+    }
+  }
+
+  return debugs[set];
+};
 /**
- * d3.tip
- * Copyright (c) 2013-2017 Justin Palmer
+ * Echos the value of a value. Trys to print the value out
+ * in the best way possible given the different types.
  *
- * Tooltips for d3.js SVG visualizations
+ * @param {Object} obj The object to print out.
+ * @param {Object} opts Optional options object that alters the output.
  */
-// eslint-disable-next-line no-extra-semi
-function _default() {
-  var direction = d3TipDirection,
-      offset = d3TipOffset,
-      html = d3TipHTML,
-      rootElement = document.body,
-      node = initNode(),
-      svg = null,
-      point = null,
-      target = null;
 
-  function tip(vis) {
-    svg = getSVGNode(vis);
-    if (!svg) return;
-    point = svg.createSVGPoint();
-    rootElement.appendChild(node);
-  } // Public - show the tooltip on the screen
-  //
-  // Returns a tip
+/* legacy: obj, showHidden, depth, colors*/
 
 
-  tip.show = function () {
-    var args = Array.prototype.slice.call(arguments);
-    if (args[args.length - 1] instanceof SVGElement) target = args.pop();
-    var content = html.apply(this, args),
-        poffset = offset.apply(this, args),
-        dir = direction.apply(this, args),
-        nodel = getNodeEl(),
-        i = directions.length,
-        coords,
-        scrollTop = document.documentElement.scrollTop || rootElement.scrollTop,
-        scrollLeft = document.documentElement.scrollLeft || rootElement.scrollLeft;
-    nodel.html(content).style('opacity', 1).style('pointer-events', 'all');
+function inspect(obj, opts) {
+  // default options
+  var ctx = {
+    seen: [],
+    stylize: stylizeNoColor
+  }; // legacy...
 
-    while (i--) nodel.classed(directions[i], false);
+  if (arguments.length >= 3) ctx.depth = arguments[2];
+  if (arguments.length >= 4) ctx.colors = arguments[3];
 
-    coords = directionCallbacks.get(dir).apply(this);
-    nodel.classed(dir, true).style('top', coords.top + poffset[0] + scrollTop + 'px').style('left', coords.left + poffset[1] + scrollLeft + 'px');
-    return tip;
-  }; // Public - hide the tooltip
-  //
-  // Returns a tip
+  if (isBoolean(opts)) {
+    // legacy...
+    ctx.showHidden = opts;
+  } else if (opts) {
+    // got an "options" object
+    exports._extend(ctx, opts);
+  } // set default options
 
 
-  tip.hide = function () {
-    var nodel = getNodeEl();
-    nodel.style('opacity', 0).style('pointer-events', 'none');
-    return tip;
-  }; // Public: Proxy attr calls to the d3 tip container.
-  // Sets or gets attribute value.
-  //
-  // n - name of the attribute
-  // v - value of the attribute
-  //
-  // Returns tip or attribute value
-  // eslint-disable-next-line no-unused-vars
+  if (isUndefined(ctx.showHidden)) ctx.showHidden = false;
+  if (isUndefined(ctx.depth)) ctx.depth = 2;
+  if (isUndefined(ctx.colors)) ctx.colors = false;
+  if (isUndefined(ctx.customInspect)) ctx.customInspect = true;
+  if (ctx.colors) ctx.stylize = stylizeWithColor;
+  return formatValue(ctx, obj, ctx.depth);
+}
 
+exports.inspect = inspect; // http://en.wikipedia.org/wiki/ANSI_escape_code#graphics
 
-  tip.attr = function (n, v) {
-    if (arguments.length < 2 && typeof n === 'string') {
-      return getNodeEl().attr(n);
+inspect.colors = {
+  'bold': [1, 22],
+  'italic': [3, 23],
+  'underline': [4, 24],
+  'inverse': [7, 27],
+  'white': [37, 39],
+  'grey': [90, 39],
+  'black': [30, 39],
+  'blue': [34, 39],
+  'cyan': [36, 39],
+  'green': [32, 39],
+  'magenta': [35, 39],
+  'red': [31, 39],
+  'yellow': [33, 39]
+}; // Don't use 'blue' not visible on cmd.exe
+
+inspect.styles = {
+  'special': 'cyan',
+  'number': 'yellow',
+  'boolean': 'yellow',
+  'undefined': 'grey',
+  'null': 'bold',
+  'string': 'green',
+  'date': 'magenta',
+  // "name": intentionally not styling
+  'regexp': 'red'
+};
+
+function stylizeWithColor(str, styleType) {
+  var style = inspect.styles[styleType];
+
+  if (style) {
+    return '\u001b[' + inspect.colors[style][0] + 'm' + str + '\u001b[' + inspect.colors[style][1] + 'm';
+  } else {
+    return str;
+  }
+}
+
+function stylizeNoColor(str, styleType) {
+  return str;
+}
+
+function arrayToHash(array) {
+  var hash = {};
+  array.forEach(function (val, idx) {
+    hash[val] = true;
+  });
+  return hash;
+}
+
+function formatValue(ctx, value, recurseTimes) {
+  // Provide a hook for user-specified inspect functions.
+  // Check that value is an object with an inspect function on it
+  if (ctx.customInspect && value && isFunction(value.inspect) && // Filter out the util module, it's inspect function is special
+  value.inspect !== exports.inspect && // Also filter out any prototype objects using the circular check.
+  !(value.constructor && value.constructor.prototype === value)) {
+    var ret = value.inspect(recurseTimes, ctx);
+
+    if (!isString(ret)) {
+      ret = formatValue(ctx, ret, recurseTimes);
     }
 
-    var args = Array.prototype.slice.call(arguments);
-
-    _d3Selection.selection.prototype.attr.apply(getNodeEl(), args);
-
-    return tip;
-  }; // Public: Proxy style calls to the d3 tip container.
-  // Sets or gets a style value.
-  //
-  // n - name of the property
-  // v - value of the property
-  //
-  // Returns tip or style property value
-  // eslint-disable-next-line no-unused-vars
+    return ret;
+  } // Primitive types cannot have properties
 
 
-  tip.style = function (n, v) {
-    if (arguments.length < 2 && typeof n === 'string') {
-      return getNodeEl().style(n);
+  var primitive = formatPrimitive(ctx, value);
+
+  if (primitive) {
+    return primitive;
+  } // Look up the keys of the object.
+
+
+  var keys = Object.keys(value);
+  var visibleKeys = arrayToHash(keys);
+
+  if (ctx.showHidden) {
+    keys = Object.getOwnPropertyNames(value);
+  } // IE doesn't make error fields non-enumerable
+  // http://msdn.microsoft.com/en-us/library/ie/dww52sbt(v=vs.94).aspx
+
+
+  if (isError(value) && (keys.indexOf('message') >= 0 || keys.indexOf('description') >= 0)) {
+    return formatError(value);
+  } // Some type of object without properties can be shortcutted.
+
+
+  if (keys.length === 0) {
+    if (isFunction(value)) {
+      var name = value.name ? ': ' + value.name : '';
+      return ctx.stylize('[Function' + name + ']', 'special');
     }
 
-    var args = Array.prototype.slice.call(arguments);
-
-    _d3Selection.selection.prototype.style.apply(getNodeEl(), args);
-
-    return tip;
-  }; // Public: Set or get the direction of the tooltip
-  //
-  // v - One of n(north), s(south), e(east), or w(west), nw(northwest),
-  //     sw(southwest), ne(northeast) or se(southeast)
-  //
-  // Returns tip or direction
-
-
-  tip.direction = function (v) {
-    if (!arguments.length) return direction;
-    direction = v == null ? v : functor(v);
-    return tip;
-  }; // Public: Sets or gets the offset of the tip
-  //
-  // v - Array of [x, y] offset
-  //
-  // Returns offset or
-
-
-  tip.offset = function (v) {
-    if (!arguments.length) return offset;
-    offset = v == null ? v : functor(v);
-    return tip;
-  }; // Public: sets or gets the html value of the tooltip
-  //
-  // v - String value of the tip
-  //
-  // Returns html value or tip
-
-
-  tip.html = function (v) {
-    if (!arguments.length) return html;
-    html = v == null ? v : functor(v);
-    return tip;
-  }; // Public: sets or gets the root element anchor of the tooltip
-  //
-  // v - root element of the tooltip
-  //
-  // Returns root node of tip
-
-
-  tip.rootElement = function (v) {
-    if (!arguments.length) return rootElement;
-    rootElement = v == null ? v : functor(v);
-    return tip;
-  }; // Public: destroys the tooltip and removes it from the DOM
-  //
-  // Returns a tip
-
-
-  tip.destroy = function () {
-    if (node) {
-      getNodeEl().remove();
-      node = null;
+    if (isRegExp(value)) {
+      return ctx.stylize(RegExp.prototype.toString.call(value), 'regexp');
     }
 
-    return tip;
+    if (isDate(value)) {
+      return ctx.stylize(Date.prototype.toString.call(value), 'date');
+    }
+
+    if (isError(value)) {
+      return formatError(value);
+    }
+  }
+
+  var base = '',
+      array = false,
+      braces = ['{', '}']; // Make Array say that they are Array
+
+  if (isArray(value)) {
+    array = true;
+    braces = ['[', ']'];
+  } // Make functions say that they are functions
+
+
+  if (isFunction(value)) {
+    var n = value.name ? ': ' + value.name : '';
+    base = ' [Function' + n + ']';
+  } // Make RegExps say that they are RegExps
+
+
+  if (isRegExp(value)) {
+    base = ' ' + RegExp.prototype.toString.call(value);
+  } // Make dates with properties first say the date
+
+
+  if (isDate(value)) {
+    base = ' ' + Date.prototype.toUTCString.call(value);
+  } // Make error with message first say the error
+
+
+  if (isError(value)) {
+    base = ' ' + formatError(value);
+  }
+
+  if (keys.length === 0 && (!array || value.length == 0)) {
+    return braces[0] + base + braces[1];
+  }
+
+  if (recurseTimes < 0) {
+    if (isRegExp(value)) {
+      return ctx.stylize(RegExp.prototype.toString.call(value), 'regexp');
+    } else {
+      return ctx.stylize('[Object]', 'special');
+    }
+  }
+
+  ctx.seen.push(value);
+  var output;
+
+  if (array) {
+    output = formatArray(ctx, value, recurseTimes, visibleKeys, keys);
+  } else {
+    output = keys.map(function (key) {
+      return formatProperty(ctx, value, recurseTimes, visibleKeys, key, array);
+    });
+  }
+
+  ctx.seen.pop();
+  return reduceToSingleString(output, base, braces);
+}
+
+function formatPrimitive(ctx, value) {
+  if (isUndefined(value)) return ctx.stylize('undefined', 'undefined');
+
+  if (isString(value)) {
+    var simple = '\'' + JSON.stringify(value).replace(/^"|"$/g, '').replace(/'/g, "\\'").replace(/\\"/g, '"') + '\'';
+    return ctx.stylize(simple, 'string');
+  }
+
+  if (isNumber(value)) return ctx.stylize('' + value, 'number');
+  if (isBoolean(value)) return ctx.stylize('' + value, 'boolean'); // For some reason typeof null is "object", so special case here.
+
+  if (isNull(value)) return ctx.stylize('null', 'null');
+}
+
+function formatError(value) {
+  return '[' + Error.prototype.toString.call(value) + ']';
+}
+
+function formatArray(ctx, value, recurseTimes, visibleKeys, keys) {
+  var output = [];
+
+  for (var i = 0, l = value.length; i < l; ++i) {
+    if (hasOwnProperty(value, String(i))) {
+      output.push(formatProperty(ctx, value, recurseTimes, visibleKeys, String(i), true));
+    } else {
+      output.push('');
+    }
+  }
+
+  keys.forEach(function (key) {
+    if (!key.match(/^\d+$/)) {
+      output.push(formatProperty(ctx, value, recurseTimes, visibleKeys, key, true));
+    }
+  });
+  return output;
+}
+
+function formatProperty(ctx, value, recurseTimes, visibleKeys, key, array) {
+  var name, str, desc;
+  desc = Object.getOwnPropertyDescriptor(value, key) || {
+    value: value[key]
   };
 
-  function d3TipDirection() {
-    return 'n';
+  if (desc.get) {
+    if (desc.set) {
+      str = ctx.stylize('[Getter/Setter]', 'special');
+    } else {
+      str = ctx.stylize('[Getter]', 'special');
+    }
+  } else {
+    if (desc.set) {
+      str = ctx.stylize('[Setter]', 'special');
+    }
   }
 
-  function d3TipOffset() {
-    return [0, 0];
+  if (!hasOwnProperty(visibleKeys, key)) {
+    name = '[' + key + ']';
   }
 
-  function d3TipHTML() {
-    return ' ';
+  if (!str) {
+    if (ctx.seen.indexOf(desc.value) < 0) {
+      if (isNull(recurseTimes)) {
+        str = formatValue(ctx, desc.value, null);
+      } else {
+        str = formatValue(ctx, desc.value, recurseTimes - 1);
+      }
+
+      if (str.indexOf('\n') > -1) {
+        if (array) {
+          str = str.split('\n').map(function (line) {
+            return '  ' + line;
+          }).join('\n').substr(2);
+        } else {
+          str = '\n' + str.split('\n').map(function (line) {
+            return '   ' + line;
+          }).join('\n');
+        }
+      }
+    } else {
+      str = ctx.stylize('[Circular]', 'special');
+    }
   }
 
-  var directionCallbacks = (0, _d3Collection.map)({
-    n: directionNorth,
-    s: directionSouth,
-    e: directionEast,
-    w: directionWest,
-    nw: directionNorthWest,
-    ne: directionNorthEast,
-    sw: directionSouthWest,
-    se: directionSouthEast
-  }),
-      directions = directionCallbacks.keys();
-
-  function directionNorth() {
-    var bbox = getScreenBBox(this);
-    return {
-      top: bbox.n.y - node.offsetHeight,
-      left: bbox.n.x - node.offsetWidth / 2
-    };
-  }
-
-  function directionSouth() {
-    var bbox = getScreenBBox(this);
-    return {
-      top: bbox.s.y,
-      left: bbox.s.x - node.offsetWidth / 2
-    };
-  }
-
-  function directionEast() {
-    var bbox = getScreenBBox(this);
-    return {
-      top: bbox.e.y - node.offsetHeight / 2,
-      left: bbox.e.x
-    };
-  }
-
-  function directionWest() {
-    var bbox = getScreenBBox(this);
-    return {
-      top: bbox.w.y - node.offsetHeight / 2,
-      left: bbox.w.x - node.offsetWidth
-    };
-  }
-
-  function directionNorthWest() {
-    var bbox = getScreenBBox(this);
-    return {
-      top: bbox.nw.y - node.offsetHeight,
-      left: bbox.nw.x - node.offsetWidth
-    };
-  }
-
-  function directionNorthEast() {
-    var bbox = getScreenBBox(this);
-    return {
-      top: bbox.ne.y - node.offsetHeight,
-      left: bbox.ne.x
-    };
-  }
-
-  function directionSouthWest() {
-    var bbox = getScreenBBox(this);
-    return {
-      top: bbox.sw.y,
-      left: bbox.sw.x - node.offsetWidth
-    };
-  }
-
-  function directionSouthEast() {
-    var bbox = getScreenBBox(this);
-    return {
-      top: bbox.se.y,
-      left: bbox.se.x
-    };
-  }
-
-  function initNode() {
-    var div = (0, _d3Selection.select)(document.createElement('div'));
-    div.style('position', 'absolute').style('top', 0).style('opacity', 0).style('pointer-events', 'none').style('box-sizing', 'border-box');
-    return div.node();
-  }
-
-  function getSVGNode(element) {
-    var svgNode = element.node();
-    if (!svgNode) return null;
-    if (svgNode.tagName.toLowerCase() === 'svg') return svgNode;
-    return svgNode.ownerSVGElement;
-  }
-
-  function getNodeEl() {
-    if (node == null) {
-      node = initNode(); // re-add node to DOM
-
-      rootElement.appendChild(node);
+  if (isUndefined(name)) {
+    if (array && key.match(/^\d+$/)) {
+      return str;
     }
 
-    return (0, _d3Selection.select)(node);
-  } // Private - gets the screen coordinates of a shape
-  //
-  // Given a shape on the screen, will return an SVGPoint for the directions
-  // n(north), s(south), e(east), w(west), ne(northeast), se(southeast),
-  // nw(northwest), sw(southwest).
-  //
-  //    +-+-+
-  //    |   |
-  //    +   +
-  //    |   |
-  //    +-+-+
-  //
-  // Returns an Object {n, s, e, w, nw, sw, ne, se}
+    name = JSON.stringify('' + key);
 
-
-  function getScreenBBox(targetShape) {
-    var targetel = target || targetShape;
-
-    while (targetel.getScreenCTM == null && targetel.parentNode != null) {
-      targetel = targetel.parentNode;
+    if (name.match(/^"([a-zA-Z_][a-zA-Z_0-9]*)"$/)) {
+      name = name.substr(1, name.length - 2);
+      name = ctx.stylize(name, 'name');
+    } else {
+      name = name.replace(/'/g, "\\'").replace(/\\"/g, '"').replace(/(^"|"$)/g, "'");
+      name = ctx.stylize(name, 'string');
     }
-
-    var bbox = {},
-        matrix = targetel.getScreenCTM(),
-        tbbox = targetel.getBBox(),
-        width = tbbox.width,
-        height = tbbox.height,
-        x = tbbox.x,
-        y = tbbox.y;
-    point.x = x;
-    point.y = y;
-    bbox.nw = point.matrixTransform(matrix);
-    point.x += width;
-    bbox.ne = point.matrixTransform(matrix);
-    point.y += height;
-    bbox.se = point.matrixTransform(matrix);
-    point.x -= width;
-    bbox.sw = point.matrixTransform(matrix);
-    point.y -= height / 2;
-    bbox.w = point.matrixTransform(matrix);
-    point.x += width;
-    bbox.e = point.matrixTransform(matrix);
-    point.x -= width / 2;
-    point.y -= height / 2;
-    bbox.n = point.matrixTransform(matrix);
-    point.y += height;
-    bbox.s = point.matrixTransform(matrix);
-    return bbox;
-  } // Private - replace D3JS 3.X d3.functor() function
-
-
-  function functor(v) {
-    return typeof v === 'function' ? v : function () {
-      return v;
-    };
   }
 
-  return tip;
+  return name + ': ' + str;
 }
-},{"d3-collection":"../node_modules/d3-collection/src/index.js","d3-selection":"../node_modules/d3-selection/src/index.js"}],"data/p4k_top200_2010.csv":[function(require,module,exports) {
-module.exports = "/p4k_top200_2010.87bd91ee.csv";
-},{}],"images/covers/1.jpg":[function(require,module,exports) {
-module.exports = "/1.17eecaa4.jpg";
-},{}],"images/covers/10.jpg":[function(require,module,exports) {
-module.exports = "/10.7d7da374.jpg";
-},{}],"images/covers/100.jpg":[function(require,module,exports) {
-module.exports = "/100.d2f17d9b.jpg";
-},{}],"images/covers/101.jpg":[function(require,module,exports) {
-module.exports = "/101.5785194a.jpg";
-},{}],"images/covers/102.jpg":[function(require,module,exports) {
-module.exports = "/102.27cf3e78.jpg";
-},{}],"images/covers/103.jpg":[function(require,module,exports) {
-module.exports = "/103.666ebdf6.jpg";
-},{}],"images/covers/104.jpg":[function(require,module,exports) {
-module.exports = "/104.c515c184.jpg";
-},{}],"images/covers/105.jpg":[function(require,module,exports) {
-module.exports = "/105.8d951dac.jpg";
-},{}],"images/covers/106.jpg":[function(require,module,exports) {
-module.exports = "/106.653cbfa2.jpg";
-},{}],"images/covers/107.jpg":[function(require,module,exports) {
-module.exports = "/107.9e1752e0.jpg";
-},{}],"images/covers/108.jpg":[function(require,module,exports) {
-module.exports = "/108.f248f8ac.jpg";
-},{}],"images/covers/11.jpg":[function(require,module,exports) {
-module.exports = "/11.5085cffd.jpg";
-},{}],"images/covers/109.jpg":[function(require,module,exports) {
-module.exports = "/109.ce0bbace.jpg";
-},{}],"images/covers/110.jpg":[function(require,module,exports) {
-module.exports = "/110.f7b6c511.jpg";
-},{}],"images/covers/111.jpg":[function(require,module,exports) {
-module.exports = "/111.467cc9b0.jpg";
-},{}],"images/covers/112.jpg":[function(require,module,exports) {
-module.exports = "/112.68670290.jpg";
-},{}],"images/covers/113.jpg":[function(require,module,exports) {
-module.exports = "/113.cb717191.jpg";
-},{}],"images/covers/114.jpg":[function(require,module,exports) {
-module.exports = "/114.4411d995.jpg";
-},{}],"images/covers/115.jpg":[function(require,module,exports) {
-module.exports = "/115.55e291ad.jpg";
-},{}],"images/covers/116.jpg":[function(require,module,exports) {
-module.exports = "/116.70f7fbd5.jpg";
-},{}],"images/covers/117.jpg":[function(require,module,exports) {
-module.exports = "/117.bcde7ef2.jpg";
-},{}],"images/covers/118.jpg":[function(require,module,exports) {
-module.exports = "/118.81fa6fba.jpg";
-},{}],"images/covers/119.jpg":[function(require,module,exports) {
-module.exports = "/119.323febdc.jpg";
-},{}],"images/covers/12.jpg":[function(require,module,exports) {
-module.exports = "/12.7aef4ecb.jpg";
-},{}],"images/covers/120.jpg":[function(require,module,exports) {
-module.exports = "/120.032ff353.jpg";
-},{}],"images/covers/121.jpg":[function(require,module,exports) {
-module.exports = "/121.36e4d882.jpg";
-},{}],"images/covers/122.jpg":[function(require,module,exports) {
-module.exports = "/122.e1927bef.jpg";
-},{}],"images/covers/123.jpg":[function(require,module,exports) {
-module.exports = "/123.2a99a9c7.jpg";
-},{}],"images/covers/124.jpg":[function(require,module,exports) {
-module.exports = "/124.9aa0b240.jpg";
-},{}],"images/covers/125.jpg":[function(require,module,exports) {
-module.exports = "/125.897f4314.jpg";
-},{}],"images/covers/126.jpg":[function(require,module,exports) {
-module.exports = "/126.2a76a874.jpg";
-},{}],"images/covers/127.jpg":[function(require,module,exports) {
-module.exports = "/127.a3e150de.jpg";
-},{}],"images/covers/128.jpg":[function(require,module,exports) {
-module.exports = "/128.6d6d3574.jpg";
-},{}],"images/covers/129.jpg":[function(require,module,exports) {
-module.exports = "/129.4961f229.jpg";
-},{}],"images/covers/13.jpg":[function(require,module,exports) {
-module.exports = "/13.86834c03.jpg";
-},{}],"images/covers/131.jpg":[function(require,module,exports) {
-module.exports = "/131.39f6abd0.jpg";
-},{}],"images/covers/130.jpg":[function(require,module,exports) {
-module.exports = "/130.c9b7e3ad.jpg";
-},{}],"images/covers/132.jpg":[function(require,module,exports) {
-module.exports = "/132.93ecc714.jpg";
-},{}],"images/covers/133.jpg":[function(require,module,exports) {
-module.exports = "/133.529961a8.jpg";
-},{}],"images/covers/134.jpg":[function(require,module,exports) {
-module.exports = "/134.2c1015df.jpg";
-},{}],"images/covers/135.jpg":[function(require,module,exports) {
-module.exports = "/135.bcf7dfda.jpg";
-},{}],"images/covers/136.jpg":[function(require,module,exports) {
-module.exports = "/136.7bd444fc.jpg";
-},{}],"images/covers/137.jpg":[function(require,module,exports) {
-module.exports = "/137.f3c61f1b.jpg";
-},{}],"images/covers/138.jpg":[function(require,module,exports) {
-module.exports = "/138.70ab4e2d.jpg";
-},{}],"images/covers/139.jpg":[function(require,module,exports) {
-module.exports = "/139.a8c5ac4a.jpg";
-},{}],"images/covers/14.jpg":[function(require,module,exports) {
-module.exports = "/14.e7ea3832.jpg";
-},{}],"images/covers/140.jpg":[function(require,module,exports) {
-module.exports = "/140.a4cf4ccf.jpg";
-},{}],"images/covers/141.jpg":[function(require,module,exports) {
-module.exports = "/141.64a6bbab.jpg";
-},{}],"images/covers/142.jpg":[function(require,module,exports) {
-module.exports = "/142.ba5f5900.jpg";
-},{}],"images/covers/143.jpg":[function(require,module,exports) {
-module.exports = "/143.a0e63cde.jpg";
-},{}],"images/covers/144.jpg":[function(require,module,exports) {
-module.exports = "/144.6c5129f8.jpg";
-},{}],"images/covers/145.jpg":[function(require,module,exports) {
-module.exports = "/145.33c02146.jpg";
-},{}],"images/covers/146.jpg":[function(require,module,exports) {
-module.exports = "/146.aeb5cb11.jpg";
-},{}],"images/covers/147.jpg":[function(require,module,exports) {
-module.exports = "/147.fe90b5da.jpg";
-},{}],"images/covers/148.jpg":[function(require,module,exports) {
-module.exports = "/148.6040718a.jpg";
-},{}],"images/covers/149.jpg":[function(require,module,exports) {
-module.exports = "/149.09e5096c.jpg";
-},{}],"images/covers/15.jpg":[function(require,module,exports) {
-module.exports = "/15.d0e255e4.jpg";
-},{}],"images/covers/150.jpg":[function(require,module,exports) {
-module.exports = "/150.2bf424f2.jpg";
-},{}],"images/covers/151.jpg":[function(require,module,exports) {
-module.exports = "/151.3678e8b0.jpg";
-},{}],"images/covers/152.jpg":[function(require,module,exports) {
-module.exports = "/152.e930ff49.jpg";
-},{}],"images/covers/153.jpg":[function(require,module,exports) {
-module.exports = "/153.07b0fab9.jpg";
-},{}],"images/covers/154.jpg":[function(require,module,exports) {
-module.exports = "/154.d0546f14.jpg";
-},{}],"images/covers/155.jpg":[function(require,module,exports) {
-module.exports = "/155.f95870b2.jpg";
-},{}],"images/covers/156.jpg":[function(require,module,exports) {
-module.exports = "/156.dacc82d9.jpg";
-},{}],"images/covers/157.jpg":[function(require,module,exports) {
-module.exports = "/157.577cae96.jpg";
-},{}],"images/covers/158.jpg":[function(require,module,exports) {
-module.exports = "/158.91e393da.jpg";
-},{}],"images/covers/159.jpg":[function(require,module,exports) {
-module.exports = "/159.f869262e.jpg";
-},{}],"images/covers/16.jpg":[function(require,module,exports) {
-module.exports = "/16.f8ead3b8.jpg";
-},{}],"images/covers/160.jpg":[function(require,module,exports) {
-module.exports = "/160.c8eff83a.jpg";
-},{}],"images/covers/161.jpg":[function(require,module,exports) {
-module.exports = "/161.187f0c2f.jpg";
-},{}],"images/covers/162.jpg":[function(require,module,exports) {
-module.exports = "/162.d2c96798.jpg";
-},{}],"images/covers/163.jpg":[function(require,module,exports) {
-module.exports = "/163.088b9c92.jpg";
-},{}],"images/covers/164.jpg":[function(require,module,exports) {
-module.exports = "/164.cb597647.jpg";
-},{}],"images/covers/165.jpg":[function(require,module,exports) {
-module.exports = "/165.49d58464.jpg";
-},{}],"images/covers/166.jpg":[function(require,module,exports) {
-module.exports = "/166.69bf67db.jpg";
-},{}],"images/covers/167.jpg":[function(require,module,exports) {
-module.exports = "/167.44b41557.jpg";
-},{}],"images/covers/168.jpg":[function(require,module,exports) {
-module.exports = "/168.fa302133.jpg";
-},{}],"images/covers/169.jpg":[function(require,module,exports) {
-module.exports = "/169.a26aed21.jpg";
-},{}],"images/covers/17.jpg":[function(require,module,exports) {
-module.exports = "/17.7060dd01.jpg";
-},{}],"images/covers/170.jpg":[function(require,module,exports) {
-module.exports = "/170.2a47c50a.jpg";
-},{}],"images/covers/171.jpg":[function(require,module,exports) {
-module.exports = "/171.d897255a.jpg";
-},{}],"images/covers/172.jpg":[function(require,module,exports) {
-module.exports = "/172.21230ded.jpg";
-},{}],"images/covers/173.jpg":[function(require,module,exports) {
-module.exports = "/173.62708bfd.jpg";
-},{}],"images/covers/174.jpg":[function(require,module,exports) {
-module.exports = "/174.cc05763f.jpg";
-},{}],"images/covers/175.jpg":[function(require,module,exports) {
-module.exports = "/175.155c7446.jpg";
-},{}],"images/covers/176.jpg":[function(require,module,exports) {
-module.exports = "/176.b2775a5f.jpg";
-},{}],"images/covers/177.jpg":[function(require,module,exports) {
-module.exports = "/177.3739ee5e.jpg";
-},{}],"images/covers/178.jpg":[function(require,module,exports) {
-module.exports = "/178.a97a1bc6.jpg";
-},{}],"images/covers/179.jpg":[function(require,module,exports) {
-module.exports = "/179.e93a6a76.jpg";
-},{}],"images/covers/18.jpg":[function(require,module,exports) {
-module.exports = "/18.f6830de7.jpg";
-},{}],"images/covers/180.jpg":[function(require,module,exports) {
-module.exports = "/180.03776994.jpg";
-},{}],"images/covers/181.jpg":[function(require,module,exports) {
-module.exports = "/181.2ff53da3.jpg";
-},{}],"images/covers/182.jpg":[function(require,module,exports) {
-module.exports = "/182.5fe14027.jpg";
-},{}],"images/covers/183.jpg":[function(require,module,exports) {
-module.exports = "/183.7fc97b45.jpg";
-},{}],"images/covers/184.jpg":[function(require,module,exports) {
-module.exports = "/184.fba7cd67.jpg";
-},{}],"images/covers/185.jpg":[function(require,module,exports) {
-module.exports = "/185.2b903342.jpg";
-},{}],"images/covers/186.jpg":[function(require,module,exports) {
-module.exports = "/186.b1aed931.jpg";
-},{}],"images/covers/187.jpg":[function(require,module,exports) {
-module.exports = "/187.76e4fb26.jpg";
-},{}],"images/covers/188.jpg":[function(require,module,exports) {
-module.exports = "/188.e3d0e19c.jpg";
-},{}],"images/covers/189.jpg":[function(require,module,exports) {
-module.exports = "/189.e8162447.jpg";
-},{}],"images/covers/19.jpg":[function(require,module,exports) {
-module.exports = "/19.ef6ea25a.jpg";
-},{}],"images/covers/190.jpg":[function(require,module,exports) {
-module.exports = "/190.b5b37ef1.jpg";
-},{}],"images/covers/191.jpg":[function(require,module,exports) {
-module.exports = "/191.d37aad6a.jpg";
-},{}],"images/covers/192.jpg":[function(require,module,exports) {
-module.exports = "/192.14546c4e.jpg";
-},{}],"images/covers/193.jpg":[function(require,module,exports) {
-module.exports = "/193.bdc9954b.jpg";
-},{}],"images/covers/194.jpg":[function(require,module,exports) {
-module.exports = "/194.5887a0cc.jpg";
-},{}],"images/covers/195.jpg":[function(require,module,exports) {
-module.exports = "/195.ea0c0b04.jpg";
-},{}],"images/covers/196.jpg":[function(require,module,exports) {
-module.exports = "/196.0d8a71eb.jpg";
-},{}],"images/covers/197.jpg":[function(require,module,exports) {
-module.exports = "/197.847d430a.jpg";
-},{}],"images/covers/198.jpg":[function(require,module,exports) {
-module.exports = "/198.e1f197c4.jpg";
-},{}],"images/covers/199.jpg":[function(require,module,exports) {
-module.exports = "/199.4a5dfe52.jpg";
-},{}],"images/covers/2.jpg":[function(require,module,exports) {
-module.exports = "/2.2b466865.jpg";
-},{}],"images/covers/20.jpg":[function(require,module,exports) {
-module.exports = "/20.6b4dde9f.jpg";
-},{}],"images/covers/200.jpg":[function(require,module,exports) {
-module.exports = "/200.43ae34aa.jpg";
-},{}],"images/covers/21.jpg":[function(require,module,exports) {
-module.exports = "/21.f0cf5b1d.jpg";
-},{}],"images/covers/22.jpg":[function(require,module,exports) {
-module.exports = "/22.37449fe1.jpg";
-},{}],"images/covers/23.jpg":[function(require,module,exports) {
-module.exports = "/23.209aec25.jpg";
-},{}],"images/covers/24.jpg":[function(require,module,exports) {
-module.exports = "/24.ceeeb482.jpg";
-},{}],"images/covers/25.jpg":[function(require,module,exports) {
-module.exports = "/25.08f6c81d.jpg";
-},{}],"images/covers/26.jpg":[function(require,module,exports) {
-module.exports = "/26.65865f97.jpg";
-},{}],"images/covers/27.jpg":[function(require,module,exports) {
-module.exports = "/27.4c12ca7f.jpg";
-},{}],"images/covers/28.jpg":[function(require,module,exports) {
-module.exports = "/28.4274de02.jpg";
-},{}],"images/covers/29.jpg":[function(require,module,exports) {
-module.exports = "/29.e8f4ddb9.jpg";
-},{}],"images/covers/3.jpg":[function(require,module,exports) {
-module.exports = "/3.544377e3.jpg";
-},{}],"images/covers/30.jpg":[function(require,module,exports) {
-module.exports = "/30.e696d551.jpg";
-},{}],"images/covers/31.jpg":[function(require,module,exports) {
-module.exports = "/31.e086c492.jpg";
-},{}],"images/covers/32.jpg":[function(require,module,exports) {
-module.exports = "/32.b51e463f.jpg";
-},{}],"images/covers/33.jpg":[function(require,module,exports) {
-module.exports = "/33.41e288b0.jpg";
-},{}],"images/covers/34.jpg":[function(require,module,exports) {
-module.exports = "/34.4f875a13.jpg";
-},{}],"images/covers/35.jpg":[function(require,module,exports) {
-module.exports = "/35.07299054.jpg";
-},{}],"images/covers/36.jpg":[function(require,module,exports) {
-module.exports = "/36.48a5cdbc.jpg";
-},{}],"images/covers/37.jpg":[function(require,module,exports) {
-module.exports = "/37.c96ec486.jpg";
-},{}],"images/covers/38.jpg":[function(require,module,exports) {
-module.exports = "/38.ea4dda87.jpg";
-},{}],"images/covers/39.jpg":[function(require,module,exports) {
-module.exports = "/39.872f729a.jpg";
-},{}],"images/covers/4.jpg":[function(require,module,exports) {
-module.exports = "/4.446acdea.jpg";
-},{}],"images/covers/40.jpg":[function(require,module,exports) {
-module.exports = "/40.9ecd6a96.jpg";
-},{}],"images/covers/41.jpg":[function(require,module,exports) {
-module.exports = "/41.f62abdcd.jpg";
-},{}],"images/covers/42.jpg":[function(require,module,exports) {
-module.exports = "/42.83168aa1.jpg";
-},{}],"images/covers/43.jpg":[function(require,module,exports) {
-module.exports = "/43.7eac92dc.jpg";
-},{}],"images/covers/44.jpg":[function(require,module,exports) {
-module.exports = "/44.68cbe9f9.jpg";
-},{}],"images/covers/45.jpg":[function(require,module,exports) {
-module.exports = "/45.e3fa9c1b.jpg";
-},{}],"images/covers/46.jpg":[function(require,module,exports) {
-module.exports = "/46.1f9bba44.jpg";
-},{}],"images/covers/47.jpg":[function(require,module,exports) {
-module.exports = "/47.50b6512d.jpg";
-},{}],"images/covers/48.jpg":[function(require,module,exports) {
-module.exports = "/48.16c21249.jpg";
-},{}],"images/covers/49.jpg":[function(require,module,exports) {
-module.exports = "/49.bdf2c664.jpg";
-},{}],"images/covers/5.jpg":[function(require,module,exports) {
-module.exports = "/5.f9662fcb.jpg";
-},{}],"images/covers/50.jpg":[function(require,module,exports) {
-module.exports = "/50.057ec1d1.jpg";
-},{}],"images/covers/51.jpg":[function(require,module,exports) {
-module.exports = "/51.aed7b5ee.jpg";
-},{}],"images/covers/52.jpg":[function(require,module,exports) {
-module.exports = "/52.289c5791.jpg";
-},{}],"images/covers/53.jpg":[function(require,module,exports) {
-module.exports = "/53.088a5b37.jpg";
-},{}],"images/covers/54.jpg":[function(require,module,exports) {
-module.exports = "/54.d14cd6b4.jpg";
-},{}],"images/covers/55.jpg":[function(require,module,exports) {
-module.exports = "/55.843257fc.jpg";
-},{}],"images/covers/56.jpg":[function(require,module,exports) {
-module.exports = "/56.4bba3bcc.jpg";
-},{}],"images/covers/57.jpg":[function(require,module,exports) {
-module.exports = "/57.41f10d6b.jpg";
-},{}],"images/covers/58.jpg":[function(require,module,exports) {
-module.exports = "/58.3d5b2e78.jpg";
-},{}],"images/covers/59.jpg":[function(require,module,exports) {
-module.exports = "/59.b9bd51f9.jpg";
-},{}],"images/covers/6.jpg":[function(require,module,exports) {
-module.exports = "/6.a561a1bb.jpg";
-},{}],"images/covers/60.jpg":[function(require,module,exports) {
-module.exports = "/60.831e5ff6.jpg";
-},{}],"images/covers/61.jpg":[function(require,module,exports) {
-module.exports = "/61.c0cbeb7e.jpg";
-},{}],"images/covers/62.jpg":[function(require,module,exports) {
-module.exports = "/62.1dcc0dfa.jpg";
-},{}],"images/covers/63.jpg":[function(require,module,exports) {
-module.exports = "/63.34ec9331.jpg";
-},{}],"images/covers/64.jpg":[function(require,module,exports) {
-module.exports = "/64.8b5312e7.jpg";
-},{}],"images/covers/65.jpg":[function(require,module,exports) {
-module.exports = "/65.e2a7a522.jpg";
-},{}],"images/covers/66.jpg":[function(require,module,exports) {
-module.exports = "/66.39a413a0.jpg";
-},{}],"images/covers/67.jpg":[function(require,module,exports) {
-module.exports = "/67.691f27b5.jpg";
-},{}],"images/covers/68.jpg":[function(require,module,exports) {
-module.exports = "/68.4880e4e2.jpg";
-},{}],"images/covers/69.jpg":[function(require,module,exports) {
-module.exports = "/69.13fb4c33.jpg";
-},{}],"images/covers/7.jpg":[function(require,module,exports) {
-module.exports = "/7.400e7201.jpg";
-},{}],"images/covers/70.jpg":[function(require,module,exports) {
-module.exports = "/70.593fd41c.jpg";
-},{}],"images/covers/71.jpg":[function(require,module,exports) {
-module.exports = "/71.6ca2f6ae.jpg";
-},{}],"images/covers/72.jpg":[function(require,module,exports) {
-module.exports = "/72.eb024e22.jpg";
-},{}],"images/covers/73.jpg":[function(require,module,exports) {
-module.exports = "/73.6d55f75c.jpg";
-},{}],"images/covers/74.jpg":[function(require,module,exports) {
-module.exports = "/74.376a26f0.jpg";
-},{}],"images/covers/75.jpg":[function(require,module,exports) {
-module.exports = "/75.179c9214.jpg";
-},{}],"images/covers/76.jpg":[function(require,module,exports) {
-module.exports = "/76.50163387.jpg";
-},{}],"images/covers/77.jpg":[function(require,module,exports) {
-module.exports = "/77.b430c74d.jpg";
-},{}],"images/covers/78.jpg":[function(require,module,exports) {
-module.exports = "/78.ef5b0775.jpg";
-},{}],"images/covers/79.jpg":[function(require,module,exports) {
-module.exports = "/79.fa04e5e8.jpg";
-},{}],"images/covers/8.jpg":[function(require,module,exports) {
-module.exports = "/8.21d52ef7.jpg";
-},{}],"images/covers/80.jpg":[function(require,module,exports) {
-module.exports = "/80.02bd93c1.jpg";
-},{}],"images/covers/81.jpg":[function(require,module,exports) {
-module.exports = "/81.2a056af0.jpg";
-},{}],"images/covers/82.jpg":[function(require,module,exports) {
-module.exports = "/82.f19cbb0b.jpg";
-},{}],"images/covers/83.jpg":[function(require,module,exports) {
-module.exports = "/83.1cc60204.jpg";
-},{}],"images/covers/84.jpg":[function(require,module,exports) {
-module.exports = "/84.3fc6cab3.jpg";
-},{}],"images/covers/85.jpg":[function(require,module,exports) {
-module.exports = "/85.323d7ff2.jpg";
-},{}],"images/covers/86.jpg":[function(require,module,exports) {
-module.exports = "/86.152781d2.jpg";
-},{}],"images/covers/87.jpg":[function(require,module,exports) {
-module.exports = "/87.46d4e71e.jpg";
-},{}],"images/covers/88.jpg":[function(require,module,exports) {
-module.exports = "/88.50d7a181.jpg";
-},{}],"images/covers/89.jpg":[function(require,module,exports) {
-module.exports = "/89.92225d4d.jpg";
-},{}],"images/covers/9.jpg":[function(require,module,exports) {
-module.exports = "/9.a5766fb7.jpg";
-},{}],"images/covers/90.jpg":[function(require,module,exports) {
-module.exports = "/90.dfccfead.jpg";
-},{}],"images/covers/91.jpg":[function(require,module,exports) {
-module.exports = "/91.71a75cd2.jpg";
-},{}],"images/covers/92.jpg":[function(require,module,exports) {
-module.exports = "/92.6ae96beb.jpg";
-},{}],"images/covers/93.jpg":[function(require,module,exports) {
-module.exports = "/93.ab323d22.jpg";
-},{}],"images/covers/94.jpg":[function(require,module,exports) {
-module.exports = "/94.87f272f8.jpg";
-},{}],"images/covers/95.jpg":[function(require,module,exports) {
-module.exports = "/95.98494965.jpg";
-},{}],"images/covers/96.jpg":[function(require,module,exports) {
-module.exports = "/96.202f1789.jpg";
-},{}],"images/covers/97.jpg":[function(require,module,exports) {
-module.exports = "/97.cafe2446.jpg";
-},{}],"images/covers/98.jpg":[function(require,module,exports) {
-module.exports = "/98.85437142.jpg";
-},{}],"images/covers/99.jpg":[function(require,module,exports) {
-module.exports = "/99.66b3e91d.jpg";
-},{}],"images/covers/Avicii_Levels.jpg":[function(require,module,exports) {
-module.exports = "/Avicii_Levels.4b2acc9e.jpg";
-},{}],"images/covers/Cloud Nothings_I'm Not Part of Me.jpg":[function(require,module,exports) {
-module.exports = "/Cloud Nothings_I'm Not Part of Me.786be034.jpg";
-},{}],"images/covers/CloudNothings_I'mNotPartofMe.jpg":[function(require,module,exports) {
-module.exports = "/CloudNothings_I'mNotPartofMe.04d3835e.jpg";
-},{}],"images/covers/Icona Pop_I Love It [ft. Charli XCX].jpg":[function(require,module,exports) {
-module.exports = {};
-},{}],"images/covers/John Maus_Believer.jpg":[function(require,module,exports) {
-module.exports = "/John Maus_Believer.80560189.jpg";
-},{}],"images/covers/JohnMaus_Believer.jpg":[function(require,module,exports) {
-module.exports = "/JohnMaus_Believer.fd11196b.jpg";
-},{}],"images/covers/Lil B_Wonton Soup.jpg":[function(require,module,exports) {
-module.exports = "/Lil B_Wonton Soup.c106ead6.jpg";
-},{}],"images/covers/LilB_WontonSoup.jpg":[function(require,module,exports) {
-module.exports = "/LilB_WontonSoup.12750c96.jpg";
-},{}],"images/covers/Nilüfer Yanya_Baby Luv.jpg":[function(require,module,exports) {
-module.exports = "/Nilüfer Yanya_Baby Luv.e9047ab5.jpg";
-},{}],"images/covers/NilüferYanya_BabyLuv.jpg":[function(require,module,exports) {
-module.exports = "/NilüferYanya_BabyLuv.a0fd91db.jpg";
-},{}],"images/covers/Rico Nasty_Smack a Bitch.jpg":[function(require,module,exports) {
-module.exports = "/Rico Nasty_Smack a Bitch.ee905e63.jpg";
-},{}],"images/covers/RicoNasty_SmackaBitch.jpg":[function(require,module,exports) {
-module.exports = "/RicoNasty_SmackaBitch.eb297bd5.jpg";
-},{}],"images/covers/Stormzy_Big for Your Boots.jpg":[function(require,module,exports) {
-module.exports = "/Stormzy_Big for Your Boots.25742be7.jpg";
-},{}],"images/covers/Stormzy_BigforYourBoots.jpg":[function(require,module,exports) {
-module.exports = "/Stormzy_BigforYourBoots.b7f67315.jpg";
-},{}],"images/covers/Tame Impala_Feels Like We Only Go Backwards.jpg":[function(require,module,exports) {
-module.exports = "/Tame Impala_Feels Like We Only Go Backwards.79670c08.jpg";
-},{}],"images/covers/TameImpala_FeelsLikeWeOnlyGoBackwards.jpg":[function(require,module,exports) {
-module.exports = "/TameImpala_FeelsLikeWeOnlyGoBackwards.1f0da6e9.jpg";
-},{}],"images/covers/dvsn_The Line.jpg":[function(require,module,exports) {
-module.exports = "/dvsn_The Line.1a97621e.jpg";
-},{}],"images/covers/dvsn_TheLine.jpg":[function(require,module,exports) {
-module.exports = "/dvsn_TheLine.9a1ccb78.jpg";
-},{}],"images/covers/*.jpg":[function(require,module,exports) {
-module.exports = {
-  "1": require("./1.jpg"),
-  "2": require("./2.jpg"),
-  "3": require("./3.jpg"),
-  "4": require("./4.jpg"),
-  "5": require("./5.jpg"),
-  "6": require("./6.jpg"),
-  "7": require("./7.jpg"),
-  "8": require("./8.jpg"),
-  "9": require("./9.jpg"),
-  "10": require("./10.jpg"),
-  "11": require("./11.jpg"),
-  "12": require("./12.jpg"),
-  "13": require("./13.jpg"),
-  "14": require("./14.jpg"),
-  "15": require("./15.jpg"),
-  "16": require("./16.jpg"),
-  "17": require("./17.jpg"),
-  "18": require("./18.jpg"),
-  "19": require("./19.jpg"),
-  "20": require("./20.jpg"),
-  "21": require("./21.jpg"),
-  "22": require("./22.jpg"),
-  "23": require("./23.jpg"),
-  "24": require("./24.jpg"),
-  "25": require("./25.jpg"),
-  "26": require("./26.jpg"),
-  "27": require("./27.jpg"),
-  "28": require("./28.jpg"),
-  "29": require("./29.jpg"),
-  "30": require("./30.jpg"),
-  "31": require("./31.jpg"),
-  "32": require("./32.jpg"),
-  "33": require("./33.jpg"),
-  "34": require("./34.jpg"),
-  "35": require("./35.jpg"),
-  "36": require("./36.jpg"),
-  "37": require("./37.jpg"),
-  "38": require("./38.jpg"),
-  "39": require("./39.jpg"),
-  "40": require("./40.jpg"),
-  "41": require("./41.jpg"),
-  "42": require("./42.jpg"),
-  "43": require("./43.jpg"),
-  "44": require("./44.jpg"),
-  "45": require("./45.jpg"),
-  "46": require("./46.jpg"),
-  "47": require("./47.jpg"),
-  "48": require("./48.jpg"),
-  "49": require("./49.jpg"),
-  "50": require("./50.jpg"),
-  "51": require("./51.jpg"),
-  "52": require("./52.jpg"),
-  "53": require("./53.jpg"),
-  "54": require("./54.jpg"),
-  "55": require("./55.jpg"),
-  "56": require("./56.jpg"),
-  "57": require("./57.jpg"),
-  "58": require("./58.jpg"),
-  "59": require("./59.jpg"),
-  "60": require("./60.jpg"),
-  "61": require("./61.jpg"),
-  "62": require("./62.jpg"),
-  "63": require("./63.jpg"),
-  "64": require("./64.jpg"),
-  "65": require("./65.jpg"),
-  "66": require("./66.jpg"),
-  "67": require("./67.jpg"),
-  "68": require("./68.jpg"),
-  "69": require("./69.jpg"),
-  "70": require("./70.jpg"),
-  "71": require("./71.jpg"),
-  "72": require("./72.jpg"),
-  "73": require("./73.jpg"),
-  "74": require("./74.jpg"),
-  "75": require("./75.jpg"),
-  "76": require("./76.jpg"),
-  "77": require("./77.jpg"),
-  "78": require("./78.jpg"),
-  "79": require("./79.jpg"),
-  "80": require("./80.jpg"),
-  "81": require("./81.jpg"),
-  "82": require("./82.jpg"),
-  "83": require("./83.jpg"),
-  "84": require("./84.jpg"),
-  "85": require("./85.jpg"),
-  "86": require("./86.jpg"),
-  "87": require("./87.jpg"),
-  "88": require("./88.jpg"),
-  "89": require("./89.jpg"),
-  "90": require("./90.jpg"),
-  "91": require("./91.jpg"),
-  "92": require("./92.jpg"),
-  "93": require("./93.jpg"),
-  "94": require("./94.jpg"),
-  "95": require("./95.jpg"),
-  "96": require("./96.jpg"),
-  "97": require("./97.jpg"),
-  "98": require("./98.jpg"),
-  "99": require("./99.jpg"),
-  "100": require("./100.jpg"),
-  "101": require("./101.jpg"),
-  "102": require("./102.jpg"),
-  "103": require("./103.jpg"),
-  "104": require("./104.jpg"),
-  "105": require("./105.jpg"),
-  "106": require("./106.jpg"),
-  "107": require("./107.jpg"),
-  "108": require("./108.jpg"),
-  "109": require("./109.jpg"),
-  "110": require("./110.jpg"),
-  "111": require("./111.jpg"),
-  "112": require("./112.jpg"),
-  "113": require("./113.jpg"),
-  "114": require("./114.jpg"),
-  "115": require("./115.jpg"),
-  "116": require("./116.jpg"),
-  "117": require("./117.jpg"),
-  "118": require("./118.jpg"),
-  "119": require("./119.jpg"),
-  "120": require("./120.jpg"),
-  "121": require("./121.jpg"),
-  "122": require("./122.jpg"),
-  "123": require("./123.jpg"),
-  "124": require("./124.jpg"),
-  "125": require("./125.jpg"),
-  "126": require("./126.jpg"),
-  "127": require("./127.jpg"),
-  "128": require("./128.jpg"),
-  "129": require("./129.jpg"),
-  "130": require("./130.jpg"),
-  "131": require("./131.jpg"),
-  "132": require("./132.jpg"),
-  "133": require("./133.jpg"),
-  "134": require("./134.jpg"),
-  "135": require("./135.jpg"),
-  "136": require("./136.jpg"),
-  "137": require("./137.jpg"),
-  "138": require("./138.jpg"),
-  "139": require("./139.jpg"),
-  "140": require("./140.jpg"),
-  "141": require("./141.jpg"),
-  "142": require("./142.jpg"),
-  "143": require("./143.jpg"),
-  "144": require("./144.jpg"),
-  "145": require("./145.jpg"),
-  "146": require("./146.jpg"),
-  "147": require("./147.jpg"),
-  "148": require("./148.jpg"),
-  "149": require("./149.jpg"),
-  "150": require("./150.jpg"),
-  "151": require("./151.jpg"),
-  "152": require("./152.jpg"),
-  "153": require("./153.jpg"),
-  "154": require("./154.jpg"),
-  "155": require("./155.jpg"),
-  "156": require("./156.jpg"),
-  "157": require("./157.jpg"),
-  "158": require("./158.jpg"),
-  "159": require("./159.jpg"),
-  "160": require("./160.jpg"),
-  "161": require("./161.jpg"),
-  "162": require("./162.jpg"),
-  "163": require("./163.jpg"),
-  "164": require("./164.jpg"),
-  "165": require("./165.jpg"),
-  "166": require("./166.jpg"),
-  "167": require("./167.jpg"),
-  "168": require("./168.jpg"),
-  "169": require("./169.jpg"),
-  "170": require("./170.jpg"),
-  "171": require("./171.jpg"),
-  "172": require("./172.jpg"),
-  "173": require("./173.jpg"),
-  "174": require("./174.jpg"),
-  "175": require("./175.jpg"),
-  "176": require("./176.jpg"),
-  "177": require("./177.jpg"),
-  "178": require("./178.jpg"),
-  "179": require("./179.jpg"),
-  "180": require("./180.jpg"),
-  "181": require("./181.jpg"),
-  "182": require("./182.jpg"),
-  "183": require("./183.jpg"),
-  "184": require("./184.jpg"),
-  "185": require("./185.jpg"),
-  "186": require("./186.jpg"),
-  "187": require("./187.jpg"),
-  "188": require("./188.jpg"),
-  "189": require("./189.jpg"),
-  "190": require("./190.jpg"),
-  "191": require("./191.jpg"),
-  "192": require("./192.jpg"),
-  "193": require("./193.jpg"),
-  "194": require("./194.jpg"),
-  "195": require("./195.jpg"),
-  "196": require("./196.jpg"),
-  "197": require("./197.jpg"),
-  "198": require("./198.jpg"),
-  "199": require("./199.jpg"),
-  "200": require("./200.jpg"),
-  "Avicii_Levels": require("./Avicii_Levels.jpg"),
-  "Cloud Nothings_I'm Not Part of Me": require("./Cloud Nothings_I'm Not Part of Me.jpg"),
-  "CloudNothings_I'mNotPartofMe": require("./CloudNothings_I'mNotPartofMe.jpg"),
-  "Icona Pop_I Love It [ft. Charli XCX]": require("./Icona Pop_I Love It [ft. Charli XCX].jpg"),
-  "IconaPop_ILoveIt[ft.CharliXCX]": require("./IconaPop_ILoveIt[ft.CharliXCX].jpg"),
-  "John Maus_Believer": require("./John Maus_Believer.jpg"),
-  "JohnMaus_Believer": require("./JohnMaus_Believer.jpg"),
-  "Lil B_Wonton Soup": require("./Lil B_Wonton Soup.jpg"),
-  "LilB_WontonSoup": require("./LilB_WontonSoup.jpg"),
-  "Nilüfer Yanya_Baby Luv": require("./Nilüfer Yanya_Baby Luv.jpg"),
-  "NilüferYanya_BabyLuv": require("./NilüferYanya_BabyLuv.jpg"),
-  "Rico Nasty_Smack a Bitch": require("./Rico Nasty_Smack a Bitch.jpg"),
-  "RicoNasty_SmackaBitch": require("./RicoNasty_SmackaBitch.jpg"),
-  "Stormzy_Big for Your Boots": require("./Stormzy_Big for Your Boots.jpg"),
-  "Stormzy_BigforYourBoots": require("./Stormzy_BigforYourBoots.jpg"),
-  "Tame Impala_Feels Like We Only Go Backwards": require("./Tame Impala_Feels Like We Only Go Backwards.jpg"),
-  "TameImpala_FeelsLikeWeOnlyGoBackwards": require("./TameImpala_FeelsLikeWeOnlyGoBackwards.jpg"),
-  "Ty Dolla $ign_Paranoid [ft. B.o.B]": require("./Ty Dolla $ign_Paranoid [ft. B.o.B].jpg"),
-  "TyDolla$ign_Paranoid[ft.B.o.B]": require("./TyDolla$ign_Paranoid[ft.B.o.B].jpg"),
-  "dvsn_The Line": require("./dvsn_The Line.jpg"),
-  "dvsn_TheLine": require("./dvsn_TheLine.jpg")
+
+function reduceToSingleString(output, base, braces) {
+  var numLinesEst = 0;
+  var length = output.reduce(function (prev, cur) {
+    numLinesEst++;
+    if (cur.indexOf('\n') >= 0) numLinesEst++;
+    return prev + cur.replace(/\u001b\[\d\d?m/g, '').length + 1;
+  }, 0);
+
+  if (length > 60) {
+    return braces[0] + (base === '' ? '' : base + '\n ') + ' ' + output.join(',\n  ') + ' ' + braces[1];
+  }
+
+  return braces[0] + base + ' ' + output.join(', ') + ' ' + braces[1];
+} // NOTE: These type checking functions intentionally don't use `instanceof`
+// because it is fragile and can be easily faked with `Object.create()`.
+
+
+function isArray(ar) {
+  return Array.isArray(ar);
+}
+
+exports.isArray = isArray;
+
+function isBoolean(arg) {
+  return typeof arg === 'boolean';
+}
+
+exports.isBoolean = isBoolean;
+
+function isNull(arg) {
+  return arg === null;
+}
+
+exports.isNull = isNull;
+
+function isNullOrUndefined(arg) {
+  return arg == null;
+}
+
+exports.isNullOrUndefined = isNullOrUndefined;
+
+function isNumber(arg) {
+  return typeof arg === 'number';
+}
+
+exports.isNumber = isNumber;
+
+function isString(arg) {
+  return typeof arg === 'string';
+}
+
+exports.isString = isString;
+
+function isSymbol(arg) {
+  return typeof arg === 'symbol';
+}
+
+exports.isSymbol = isSymbol;
+
+function isUndefined(arg) {
+  return arg === void 0;
+}
+
+exports.isUndefined = isUndefined;
+
+function isRegExp(re) {
+  return isObject(re) && objectToString(re) === '[object RegExp]';
+}
+
+exports.isRegExp = isRegExp;
+
+function isObject(arg) {
+  return typeof arg === 'object' && arg !== null;
+}
+
+exports.isObject = isObject;
+
+function isDate(d) {
+  return isObject(d) && objectToString(d) === '[object Date]';
+}
+
+exports.isDate = isDate;
+
+function isError(e) {
+  return isObject(e) && (objectToString(e) === '[object Error]' || e instanceof Error);
+}
+
+exports.isError = isError;
+
+function isFunction(arg) {
+  return typeof arg === 'function';
+}
+
+exports.isFunction = isFunction;
+
+function isPrimitive(arg) {
+  return arg === null || typeof arg === 'boolean' || typeof arg === 'number' || typeof arg === 'string' || typeof arg === 'symbol' || // ES6 symbol
+  typeof arg === 'undefined';
+}
+
+exports.isPrimitive = isPrimitive;
+exports.isBuffer = require('./support/isBuffer');
+
+function objectToString(o) {
+  return Object.prototype.toString.call(o);
+}
+
+function pad(n) {
+  return n < 10 ? '0' + n.toString(10) : n.toString(10);
+}
+
+var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']; // 26 Feb 16:19:34
+
+function timestamp() {
+  var d = new Date();
+  var time = [pad(d.getHours()), pad(d.getMinutes()), pad(d.getSeconds())].join(':');
+  return [d.getDate(), months[d.getMonth()], time].join(' ');
+} // log is just a thin wrapper to console.log that prepends a timestamp
+
+
+exports.log = function () {
+  console.log('%s - %s', timestamp(), exports.format.apply(exports, arguments));
 };
-},{"./1.jpg":"images/covers/1.jpg","./10.jpg":"images/covers/10.jpg","./100.jpg":"images/covers/100.jpg","./101.jpg":"images/covers/101.jpg","./102.jpg":"images/covers/102.jpg","./103.jpg":"images/covers/103.jpg","./104.jpg":"images/covers/104.jpg","./105.jpg":"images/covers/105.jpg","./106.jpg":"images/covers/106.jpg","./107.jpg":"images/covers/107.jpg","./108.jpg":"images/covers/108.jpg","./11.jpg":"images/covers/11.jpg","./109.jpg":"images/covers/109.jpg","./110.jpg":"images/covers/110.jpg","./111.jpg":"images/covers/111.jpg","./112.jpg":"images/covers/112.jpg","./113.jpg":"images/covers/113.jpg","./114.jpg":"images/covers/114.jpg","./115.jpg":"images/covers/115.jpg","./116.jpg":"images/covers/116.jpg","./117.jpg":"images/covers/117.jpg","./118.jpg":"images/covers/118.jpg","./119.jpg":"images/covers/119.jpg","./12.jpg":"images/covers/12.jpg","./120.jpg":"images/covers/120.jpg","./121.jpg":"images/covers/121.jpg","./122.jpg":"images/covers/122.jpg","./123.jpg":"images/covers/123.jpg","./124.jpg":"images/covers/124.jpg","./125.jpg":"images/covers/125.jpg","./126.jpg":"images/covers/126.jpg","./127.jpg":"images/covers/127.jpg","./128.jpg":"images/covers/128.jpg","./129.jpg":"images/covers/129.jpg","./13.jpg":"images/covers/13.jpg","./131.jpg":"images/covers/131.jpg","./130.jpg":"images/covers/130.jpg","./132.jpg":"images/covers/132.jpg","./133.jpg":"images/covers/133.jpg","./134.jpg":"images/covers/134.jpg","./135.jpg":"images/covers/135.jpg","./136.jpg":"images/covers/136.jpg","./137.jpg":"images/covers/137.jpg","./138.jpg":"images/covers/138.jpg","./139.jpg":"images/covers/139.jpg","./14.jpg":"images/covers/14.jpg","./140.jpg":"images/covers/140.jpg","./141.jpg":"images/covers/141.jpg","./142.jpg":"images/covers/142.jpg","./143.jpg":"images/covers/143.jpg","./144.jpg":"images/covers/144.jpg","./145.jpg":"images/covers/145.jpg","./146.jpg":"images/covers/146.jpg","./147.jpg":"images/covers/147.jpg","./148.jpg":"images/covers/148.jpg","./149.jpg":"images/covers/149.jpg","./15.jpg":"images/covers/15.jpg","./150.jpg":"images/covers/150.jpg","./151.jpg":"images/covers/151.jpg","./152.jpg":"images/covers/152.jpg","./153.jpg":"images/covers/153.jpg","./154.jpg":"images/covers/154.jpg","./155.jpg":"images/covers/155.jpg","./156.jpg":"images/covers/156.jpg","./157.jpg":"images/covers/157.jpg","./158.jpg":"images/covers/158.jpg","./159.jpg":"images/covers/159.jpg","./16.jpg":"images/covers/16.jpg","./160.jpg":"images/covers/160.jpg","./161.jpg":"images/covers/161.jpg","./162.jpg":"images/covers/162.jpg","./163.jpg":"images/covers/163.jpg","./164.jpg":"images/covers/164.jpg","./165.jpg":"images/covers/165.jpg","./166.jpg":"images/covers/166.jpg","./167.jpg":"images/covers/167.jpg","./168.jpg":"images/covers/168.jpg","./169.jpg":"images/covers/169.jpg","./17.jpg":"images/covers/17.jpg","./170.jpg":"images/covers/170.jpg","./171.jpg":"images/covers/171.jpg","./172.jpg":"images/covers/172.jpg","./173.jpg":"images/covers/173.jpg","./174.jpg":"images/covers/174.jpg","./175.jpg":"images/covers/175.jpg","./176.jpg":"images/covers/176.jpg","./177.jpg":"images/covers/177.jpg","./178.jpg":"images/covers/178.jpg","./179.jpg":"images/covers/179.jpg","./18.jpg":"images/covers/18.jpg","./180.jpg":"images/covers/180.jpg","./181.jpg":"images/covers/181.jpg","./182.jpg":"images/covers/182.jpg","./183.jpg":"images/covers/183.jpg","./184.jpg":"images/covers/184.jpg","./185.jpg":"images/covers/185.jpg","./186.jpg":"images/covers/186.jpg","./187.jpg":"images/covers/187.jpg","./188.jpg":"images/covers/188.jpg","./189.jpg":"images/covers/189.jpg","./19.jpg":"images/covers/19.jpg","./190.jpg":"images/covers/190.jpg","./191.jpg":"images/covers/191.jpg","./192.jpg":"images/covers/192.jpg","./193.jpg":"images/covers/193.jpg","./194.jpg":"images/covers/194.jpg","./195.jpg":"images/covers/195.jpg","./196.jpg":"images/covers/196.jpg","./197.jpg":"images/covers/197.jpg","./198.jpg":"images/covers/198.jpg","./199.jpg":"images/covers/199.jpg","./2.jpg":"images/covers/2.jpg","./20.jpg":"images/covers/20.jpg","./200.jpg":"images/covers/200.jpg","./21.jpg":"images/covers/21.jpg","./22.jpg":"images/covers/22.jpg","./23.jpg":"images/covers/23.jpg","./24.jpg":"images/covers/24.jpg","./25.jpg":"images/covers/25.jpg","./26.jpg":"images/covers/26.jpg","./27.jpg":"images/covers/27.jpg","./28.jpg":"images/covers/28.jpg","./29.jpg":"images/covers/29.jpg","./3.jpg":"images/covers/3.jpg","./30.jpg":"images/covers/30.jpg","./31.jpg":"images/covers/31.jpg","./32.jpg":"images/covers/32.jpg","./33.jpg":"images/covers/33.jpg","./34.jpg":"images/covers/34.jpg","./35.jpg":"images/covers/35.jpg","./36.jpg":"images/covers/36.jpg","./37.jpg":"images/covers/37.jpg","./38.jpg":"images/covers/38.jpg","./39.jpg":"images/covers/39.jpg","./4.jpg":"images/covers/4.jpg","./40.jpg":"images/covers/40.jpg","./41.jpg":"images/covers/41.jpg","./42.jpg":"images/covers/42.jpg","./43.jpg":"images/covers/43.jpg","./44.jpg":"images/covers/44.jpg","./45.jpg":"images/covers/45.jpg","./46.jpg":"images/covers/46.jpg","./47.jpg":"images/covers/47.jpg","./48.jpg":"images/covers/48.jpg","./49.jpg":"images/covers/49.jpg","./5.jpg":"images/covers/5.jpg","./50.jpg":"images/covers/50.jpg","./51.jpg":"images/covers/51.jpg","./52.jpg":"images/covers/52.jpg","./53.jpg":"images/covers/53.jpg","./54.jpg":"images/covers/54.jpg","./55.jpg":"images/covers/55.jpg","./56.jpg":"images/covers/56.jpg","./57.jpg":"images/covers/57.jpg","./58.jpg":"images/covers/58.jpg","./59.jpg":"images/covers/59.jpg","./6.jpg":"images/covers/6.jpg","./60.jpg":"images/covers/60.jpg","./61.jpg":"images/covers/61.jpg","./62.jpg":"images/covers/62.jpg","./63.jpg":"images/covers/63.jpg","./64.jpg":"images/covers/64.jpg","./65.jpg":"images/covers/65.jpg","./66.jpg":"images/covers/66.jpg","./67.jpg":"images/covers/67.jpg","./68.jpg":"images/covers/68.jpg","./69.jpg":"images/covers/69.jpg","./7.jpg":"images/covers/7.jpg","./70.jpg":"images/covers/70.jpg","./71.jpg":"images/covers/71.jpg","./72.jpg":"images/covers/72.jpg","./73.jpg":"images/covers/73.jpg","./74.jpg":"images/covers/74.jpg","./75.jpg":"images/covers/75.jpg","./76.jpg":"images/covers/76.jpg","./77.jpg":"images/covers/77.jpg","./78.jpg":"images/covers/78.jpg","./79.jpg":"images/covers/79.jpg","./8.jpg":"images/covers/8.jpg","./80.jpg":"images/covers/80.jpg","./81.jpg":"images/covers/81.jpg","./82.jpg":"images/covers/82.jpg","./83.jpg":"images/covers/83.jpg","./84.jpg":"images/covers/84.jpg","./85.jpg":"images/covers/85.jpg","./86.jpg":"images/covers/86.jpg","./87.jpg":"images/covers/87.jpg","./88.jpg":"images/covers/88.jpg","./89.jpg":"images/covers/89.jpg","./9.jpg":"images/covers/9.jpg","./90.jpg":"images/covers/90.jpg","./91.jpg":"images/covers/91.jpg","./92.jpg":"images/covers/92.jpg","./93.jpg":"images/covers/93.jpg","./94.jpg":"images/covers/94.jpg","./95.jpg":"images/covers/95.jpg","./96.jpg":"images/covers/96.jpg","./97.jpg":"images/covers/97.jpg","./98.jpg":"images/covers/98.jpg","./99.jpg":"images/covers/99.jpg","./Avicii_Levels.jpg":"images/covers/Avicii_Levels.jpg","./Cloud Nothings_I'm Not Part of Me.jpg":"images/covers/Cloud Nothings_I'm Not Part of Me.jpg","./CloudNothings_I'mNotPartofMe.jpg":"images/covers/CloudNothings_I'mNotPartofMe.jpg","./Icona Pop_I Love It [ft. Charli XCX].jpg":"images/covers/Icona Pop_I Love It [ft. Charli XCX].jpg","./IconaPop_ILoveIt[ft.CharliXCX].jpg":"images/covers/Icona Pop_I Love It [ft. Charli XCX].jpg","./John Maus_Believer.jpg":"images/covers/John Maus_Believer.jpg","./JohnMaus_Believer.jpg":"images/covers/JohnMaus_Believer.jpg","./Lil B_Wonton Soup.jpg":"images/covers/Lil B_Wonton Soup.jpg","./LilB_WontonSoup.jpg":"images/covers/LilB_WontonSoup.jpg","./Nilüfer Yanya_Baby Luv.jpg":"images/covers/Nilüfer Yanya_Baby Luv.jpg","./NilüferYanya_BabyLuv.jpg":"images/covers/NilüferYanya_BabyLuv.jpg","./Rico Nasty_Smack a Bitch.jpg":"images/covers/Rico Nasty_Smack a Bitch.jpg","./RicoNasty_SmackaBitch.jpg":"images/covers/RicoNasty_SmackaBitch.jpg","./Stormzy_Big for Your Boots.jpg":"images/covers/Stormzy_Big for Your Boots.jpg","./Stormzy_BigforYourBoots.jpg":"images/covers/Stormzy_BigforYourBoots.jpg","./Tame Impala_Feels Like We Only Go Backwards.jpg":"images/covers/Tame Impala_Feels Like We Only Go Backwards.jpg","./TameImpala_FeelsLikeWeOnlyGoBackwards.jpg":"images/covers/TameImpala_FeelsLikeWeOnlyGoBackwards.jpg","./Ty Dolla $ign_Paranoid [ft. B.o.B].jpg":"images/covers/Icona Pop_I Love It [ft. Charli XCX].jpg","./TyDolla$ign_Paranoid[ft.B.o.B].jpg":"images/covers/Icona Pop_I Love It [ft. Charli XCX].jpg","./dvsn_The Line.jpg":"images/covers/dvsn_The Line.jpg","./dvsn_TheLine.jpg":"images/covers/dvsn_TheLine.jpg"}],"scripts/stacked_bar_chart.js":[function(require,module,exports) {
+/**
+ * Inherit the prototype methods from one constructor into another.
+ *
+ * The Function.prototype.inherits from lang.js rewritten as a standalone
+ * function (not on Function.prototype). NOTE: If this file is to be loaded
+ * during bootstrapping this function needs to be rewritten using some native
+ * functions as prototype setup using normal JavaScript does not work as
+ * expected during bootstrapping (see mirror.js in r114903).
+ *
+ * @param {function} ctor Constructor function which needs to inherit the
+ *     prototype.
+ * @param {function} superCtor Constructor function to inherit prototype from.
+ */
+
+
+exports.inherits = require('inherits');
+
+exports._extend = function (origin, add) {
+  // Don't do anything if add isn't an object
+  if (!add || !isObject(add)) return origin;
+  var keys = Object.keys(add);
+  var i = keys.length;
+
+  while (i--) {
+    origin[keys[i]] = add[keys[i]];
+  }
+
+  return origin;
+};
+
+function hasOwnProperty(obj, prop) {
+  return Object.prototype.hasOwnProperty.call(obj, prop);
+}
+
+var kCustomPromisifiedSymbol = typeof Symbol !== 'undefined' ? Symbol('util.promisify.custom') : undefined;
+
+exports.promisify = function promisify(original) {
+  if (typeof original !== 'function') throw new TypeError('The "original" argument must be of type Function');
+
+  if (kCustomPromisifiedSymbol && original[kCustomPromisifiedSymbol]) {
+    var fn = original[kCustomPromisifiedSymbol];
+
+    if (typeof fn !== 'function') {
+      throw new TypeError('The "util.promisify.custom" argument must be of type Function');
+    }
+
+    Object.defineProperty(fn, kCustomPromisifiedSymbol, {
+      value: fn,
+      enumerable: false,
+      writable: false,
+      configurable: true
+    });
+    return fn;
+  }
+
+  function fn() {
+    var promiseResolve, promiseReject;
+    var promise = new Promise(function (resolve, reject) {
+      promiseResolve = resolve;
+      promiseReject = reject;
+    });
+    var args = [];
+
+    for (var i = 0; i < arguments.length; i++) {
+      args.push(arguments[i]);
+    }
+
+    args.push(function (err, value) {
+      if (err) {
+        promiseReject(err);
+      } else {
+        promiseResolve(value);
+      }
+    });
+
+    try {
+      original.apply(this, args);
+    } catch (err) {
+      promiseReject(err);
+    }
+
+    return promise;
+  }
+
+  Object.setPrototypeOf(fn, Object.getPrototypeOf(original));
+  if (kCustomPromisifiedSymbol) Object.defineProperty(fn, kCustomPromisifiedSymbol, {
+    value: fn,
+    enumerable: false,
+    writable: false,
+    configurable: true
+  });
+  return Object.defineProperties(fn, getOwnPropertyDescriptors(original));
+};
+
+exports.promisify.custom = kCustomPromisifiedSymbol;
+
+function callbackifyOnRejected(reason, cb) {
+  // `!reason` guard inspired by bluebird (Ref: https://goo.gl/t5IS6M).
+  // Because `null` is a special error value in callbacks which means "no error
+  // occurred", we error-wrap so the callback consumer can distinguish between
+  // "the promise rejected with null" or "the promise fulfilled with undefined".
+  if (!reason) {
+    var newReason = new Error('Promise was rejected with a falsy value');
+    newReason.reason = reason;
+    reason = newReason;
+  }
+
+  return cb(reason);
+}
+
+function callbackify(original) {
+  if (typeof original !== 'function') {
+    throw new TypeError('The "original" argument must be of type Function');
+  } // We DO NOT return the promise as it gives the user a false sense that
+  // the promise is actually somehow related to the callback's execution
+  // and that the callback throwing will reject the promise.
+
+
+  function callbackified() {
+    var args = [];
+
+    for (var i = 0; i < arguments.length; i++) {
+      args.push(arguments[i]);
+    }
+
+    var maybeCb = args.pop();
+
+    if (typeof maybeCb !== 'function') {
+      throw new TypeError('The last argument must be of type Function');
+    }
+
+    var self = this;
+
+    var cb = function () {
+      return maybeCb.apply(self, arguments);
+    }; // In true node style we process the callback on `nextTick` with all the
+    // implications (stack, `uncaughtException`, `async_hooks`)
+
+
+    original.apply(this, args).then(function (ret) {
+      process.nextTick(cb, null, ret);
+    }, function (rej) {
+      process.nextTick(callbackifyOnRejected, rej, cb);
+    });
+  }
+
+  Object.setPrototypeOf(callbackified, Object.getPrototypeOf(original));
+  Object.defineProperties(callbackified, getOwnPropertyDescriptors(original));
+  return callbackified;
+}
+
+exports.callbackify = callbackify;
+},{"./support/isBuffer":"../node_modules/util/support/isBufferBrowser.js","inherits":"../node_modules/util/node_modules/inherits/inherits_browser.js","process":"../node_modules/process/browser.js"}],"../node_modules/autocomplete/lib/trie.js":[function(require,module,exports) {
+var sys = require('sys');
+
+Trie = function() {
+    this.words = 0;
+    this.prefixes = 0;
+    this.children = [];
+};
+
+
+/**
+ * Add a value to the trie
+ *
+ * @param {String} value
+ * @param {Number} index (optional)
+ */
+Trie.prototype.addValue = function(value, index) {
+    if (!index) {
+       index = 0;
+    } 
+
+    if (value.length === 0) {
+          return;
+    }
+
+    if (index === value.length) {
+        this.words++;
+        return;
+    }
+
+    this.prefixes++;
+    var key = value[index];
+    if (this.children[key] === undefined) {
+        this.children[key] = new Trie();
+    }
+    var child = this.children[key];
+    child.addValue(value, index + 1);
+};
+
+/**
+ * Remove a value form the trie
+ *
+ * @param {String} value
+ * @param {Number} index (optional)
+ */
+Trie.prototype.removeValue = function(value, index) {
+    if (!index) {
+        index = 0;
+    }
+
+    if (value.length === 0) {
+        return;
+    }
+
+    if (index === value.length) {
+        this.words--;
+    } else {
+        this.prefixes--;
+        var key = value[index];
+        var child = this.children[key];
+        child.removeValue(value, index + 1);
+    }
+};
+
+/** Get the count of instances of a word in the entire trie
+ *
+ * @param {String} word
+ * @param {Number} index (optional)
+ */
+Trie.prototype.wordCount = function() {
+    if (!index) {
+        index = 0;
+    }
+
+    if (value.length === 0) {
+        return 0;
+    }
+
+    if (index === value.length) {
+        return this.words;
+    } else {
+        var key = value[index];
+        var child = this.children[key];
+        if (child) {
+            return child.wordCount(value, index + 1);
+        } else {
+            return 0;
+        }
+    }
+};
+
+/** Get the count of instances of a prefix in the enture trie
+ * 
+ * @param {String} prefix
+ * @param {Number} index
+ */
+Trie.prototype.prefixCount = function(prefix, index) {
+    if (!index) {
+        index = 0;
+    }
+
+    if (prefix.length === 0) {
+        return 0;
+    }
+
+    if (index === prefix.length) {
+        return this.prefixes;
+    } else {
+        var key = prefix[index];
+        var child = this.children[key];
+        if (child) {
+            return child.prefixCount(prefix, index + 1);
+        } else {
+            return 0;
+        }
+    }
+};
+
+/**
+ * Check if a word exists in the trie
+ *
+ * @param {String} value
+ */
+Trie.prototype.wordExists = function(value) {
+    if (value.length === 0) {
+        return false;
+    }
+
+    return this.wordCount(value) > 0;
+};
+
+/**
+ * Return all words with a prefix
+ *
+ * @param {String} prefix
+ */
+Trie.prototype.allChildWords = function(prefix) {
+    if (!prefix) {
+        prefix = '';
+    }
+
+    var words = [];
+    if (this.words > 0) {
+        words.push(prefix);
+    }
+
+    for (key in this.children) {
+        var child = this.children[key];
+        words = words.concat(child.allChildWords(prefix + key));
+    }
+
+    return words;
+}
+
+/**
+ * Perform an autocomplete match
+ *
+ * @param {String} prefix
+ * @param {Number} index
+ */
+Trie.prototype.autoComplete = function(prefix, index) {
+    if (!index) {
+        index = 0;
+    }
+
+    if (prefix.length === 0) {
+        return [];
+    }
+
+    var key = prefix[index];
+    var child = this.children[key];
+    if (!child) {
+        return [];
+    } else { 
+        if (index === prefix.length - 1) {
+            return child.allChildWords(prefix);
+        } else {
+            return child.autoComplete(prefix, index + 1);
+        }
+    }
+};
+
+exports.Trie = Trie;
+
+
+},{"sys":"../node_modules/util/util.js"}],"../node_modules/autocomplete/lib/autocomplete.js":[function(require,module,exports) {
+var EventEmitter = require('events').EventEmitter,
+    util = require('util'),
+    Trie = require('./trie').Trie;
+
+exports = module.exports = Autocomplete;
+exports.version = '0.0.1';
+
+
+exports.connectAutocomplete = function(getInitialElements) {
+    Autocomplete.singleton  = new Autocomplete();
+
+    return Autocomplete.singleton;
+};
+
+function Autocomplete(name) {
+    this.trie = new Trie()
+    EventEmitter.call(this);
+}
+util.inherits(Autocomplete, EventEmitter);
+
+Autocomplete.prototype.close = function() {
+    this.emit('close');
+};
+
+Autocomplete.prototype.initialize = function(getInitialElements) {
+    getInitialElements(function(elements) {
+        elements.forEach(function(element) {
+            Autocomplete.singleton.addElement(element);
+        });
+        Autocomplete.singleton.emit('loaded');
+    });
+};
+
+Autocomplete.prototype.addElement = function(element) {
+    this.trie.addValue(element);
+};
+
+
+Autocomplete.prototype.removeElement = function(element) {
+    this.trie.removeValue(element);
+};
+
+Autocomplete.prototype.search = function(prefix) {
+    return this.trie.autoComplete(prefix);
+};
+
+
+
+},{"events":"../node_modules/events/events.js","util":"../node_modules/util/util.js","./trie":"../node_modules/autocomplete/lib/trie.js"}],"../node_modules/autocomplete/index.js":[function(require,module,exports) {
+module.exports = require('./lib/autocomplete');
+
+},{"./lib/autocomplete":"../node_modules/autocomplete/lib/autocomplete.js"}],"data/p4k_top200_2010.csv":[function(require,module,exports) {
+module.exports = "/p4k_top200_2010.87bd91ee.csv";
+},{}],"data/artist_counts.csv":[function(require,module,exports) {
+module.exports = "/artist_counts.f6d3a93c.csv";
+},{}],"scripts/artist_appearances.js":[function(require,module,exports) {
 "use strict";
 
 var d3 = _interopRequireWildcard(require("d3"));
 
-var _d3Tip = _interopRequireDefault(require("d3-tip"));
+var _autocomplete = _interopRequireDefault(require("autocomplete"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29490,15 +30116,27 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 // import imgs from './../images/'
-d3.tip = _d3Tip.default;
+// d3.tip = d3Tip
 var margin = {
   top: 50,
   left: 60,
   right: 60,
-  bottom: 50
+  bottom: 100
 };
 var width = 700 - margin.left - margin.right;
-var height = 4 / 7 * width - margin.top - margin.bottom;
+var height = 3 / 7 * width - margin.top - margin.bottom;
+var t = d3.transition().duration(1000).ease(d3.easeLinear); // let artists = [
+//   'Drake',
+//   'Future',
+//   'Beyoncé',
+//   'Frank Ocean',
+//   'Nicki Minaj',
+//   'Kanye West',
+//   'Rihanna',
+//   'Charli XCX',
+//   'Rick Ross',
+//   'Robyn'
+// ]
 
 function responsivefy(svg) {
   // get container + svg aspect ratio
@@ -29520,121 +30158,70 @@ function responsivefy(svg) {
     svg.attr('width', targetWidth);
     svg.attr('height', Math.round(targetWidth / aspect)); // svg.selectAll('.d3-tip').style('max-width', targetWidth / 2)
   }
-}
+} // const input_form = d3
+//   .select('#chart-3')
+//   .append('input')
+//   .attr('id', 'autoComplete')
 
-var svg = d3.select('#chart-1').append('svg').attr('height', height + margin.top + margin.bottom).attr('width', width + margin.left + margin.right).call(responsivefy).append('g').attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
-var xPositionScale = d3.scaleBand().range([0, width]).paddingInner(0).paddingOuter(0.1);
-var colorScale = d3.scaleSequential([2010, 2019], d3.interpolateRainbow);
-Promise.all([d3.csv(require('../data/p4k_top200_2010.csv'))]).then(ready);
+
+var frame = d3.select('#chart-3').append('svg').attr('height', height + margin.top + margin.bottom).attr('width', width + margin.left + margin.right).call(responsivefy);
+var svg = frame.append('g').attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+var xPositionScale = d3.scaleLinear().domain([200, 1]).range([0, width]); // const yPositionScale = d3
+//   .scaleLinear()
+//   .domain([0, 19])
+//   .range([0, height])
+
+var colorScale = d3.scaleSequential([2010, 2040], d3.interpolateRainbow);
+Promise.all([d3.csv(require('../data/p4k_top200_2010.csv')), d3.csv(require('../data/artist_counts.csv'))]).then(ready);
 
 function ready(_ref) {
-  var _ref2 = _slicedToArray(_ref, 1),
-      datapoints = _ref2[0];
+  var _ref2 = _slicedToArray(_ref, 2),
+      datapoints = _ref2[0],
+      artists = _ref2[1];
 
-  var nested = d3.nest().key(function (d) {
-    return +d.year;
-  }).entries(datapoints);
-  var numbers = d3.range(d3.max(nested, function (d) {
-    return d.values.length;
-  }));
-  var stackedYears = d3.stack().keys(numbers).value(function (d, i) {
-    return i < d.values.length ? 1 : 0;
-  })(nested);
-  var xPositionScale = d3.scaleBand().rangeRound([0, width]).paddingInner(0.05).align(0.1);
-  var yPositionScale = d3.scaleLinear().rangeRound([height, 0]);
-  xPositionScale.domain(nested.map(function (d) {
-    return d.key;
-  }).sort());
-  yPositionScale.domain([0, d3.max(nested, function (d) {
-    return d.values.length;
-  })]).nice();
-  colorScale.domain([0, 30]);
-  svg.append('g').selectAll('g').data(stackedYears).enter().append('g').attr('stroke', 'white').selectAll('rect').data(function (d, i) {
+  var artist_names = artists.sort(function (a, b) {
+    var as = a.appearances + a.appearances_no_ft;
+    var bs = b.appearances + b.appearances_no_ft;
+    return as < bs ? 1 : as > bs ? -1 : 0;
+  }).map(function (d) {
+    return d.artist;
+  });
+  d3.select('#artistNames').on('change', dropdownChange).selectAll('option').data(artist_names).enter().append('option').attr('value', function (d) {
     return d;
-  }).enter().append('rect').attr('x', function (d) {
-    return xPositionScale(d.data.key);
-  }).attr('y', function (d) {
-    return yPositionScale(d[1]);
-  }).attr('height', function (d) {
-    return yPositionScale(d[0]) - yPositionScale(d[1]);
-  }).attr('width', xPositionScale.bandwidth()).attr('class', function (d) {
-    return 'y' + d.data.key;
-  }).attr('fill', function (d) {
-    return colorScale(+d.data.key);
+  }).text(function (d) {
+    return d;
   });
-  d3.selectAll('rect').each(function (d, i) {
-    var idx = Math.floor(i / 10);
-    d3.select(this).attr('id', idx < d.data.values.length ? d.data.values[idx].song.replace(/ |\.|\[|\]/g, '').toLowerCase() : '');
-  });
-  var yAxis = d3.axisRight(yPositionScale).tickValues([5, 10, 15, 20, 25, 28]).tickSize(width);
-  svg.append('g').lower().attr('class', 'axis y-axis').call(yAxis).selectAll('.tick line').attr('stroke', 'grey').attr('stroke-width', 3).style('stroke-dasharray', '1 5').lower();
-  svg.selectAll('.tick text').attr('font-size', 14);
-  var xAxis = d3.axisBottom(xPositionScale);
-  svg.append('g').attr('class', 'axis x-axis').attr('transform', 'translate(0,' + height + ')').call(xAxis);
-  svg.selectAll('.domain').style('opacity', 0);
-  svg.selectAll('g.axis.x-axis line').style('opacity', 0);
-  svg.selectAll('g.axis.x-axis text').data(stackedYears).attr('fill', function (_, i) {
-    return colorScale(i);
-  }).attr('font-size', 14);
-  var windowWidth = parseInt(d3.select(svg.node().parentNode.parentNode).style('width'));
+  svg // .select('.timeline')
+  .append('line').attr('x1', 0).attr('x2', width).attr('y1', height / 2).attr('y2', height / 2).attr('stroke', 'grey');
+  svg.append('text').text('#200').attr('id', 'worst').attr('x', 0).attr('y', height / 2).attr('dy', 100).attr('stroke', 'black').attr('text-anchor', 'middle').attr('alignment-baseline', 'bottom');
+  svg.append('text').text('#1').attr('id', 'best').attr('x', width).attr('y', height / 2).attr('dy', 100).attr('text-anchor', 'middle').attr('alignment-baseline', 'bottom');
+  var songs = svg.selectAll('.song').data(datapoints).enter().append('rect').attr('x', function (d) {
+    return xPositionScale(+d.rank);
+  }).attr('y', height / 2).attr('class', 'song').attr('width', width / 100).attr('height', 0).attr('fill', function (d) {
+    return colorScale(d.year);
+  }).attr('stroke', 'black'); // .style('opacity', 0)
 
-  if (windowWidth > 600) {
-    Promise.all([require('../images/covers/*.jpg')]).then(doTooltips);
-  } else {
-    Promise.all([require('../images/covers/*.jpg')]).then(doSmallTTs);
-  }
+  dropdownChange(); // .style('opacity', 1)
 }
 
-function doTooltips(_ref3) {
-  var _ref4 = _slicedToArray(_ref3, 1),
-      imgs = _ref4[0];
-
-  var updated = d3.selectAll('rect').data().map(function (d, i) {
-    return {
-      0: d[0],
-      1: d[1],
-      year: d.data.key,
-      data: d.data.values[Math.floor(i / 10)]
-    };
-  });
-  var tip = d3.tip().attr('class', 'd3-tip').html(function (d) {
-    var s = d.data.song;
-    var a = d.data.artist;
-    var r = d.data.rank;
-    var i = imgs[r];
-    return "<p class='important'>".concat(s, " by ").concat(a, "</p><p>(Rank #").concat(r, ")</p><img src=\"").concat(i, "\">");
-  });
-  /* Invoke the tip in the context of your visualization */
-
-  svg.call(tip);
-  svg.selectAll('rect').data(updated).on('mouseover', tip.show).on('mouseout', tip.hide);
+function dropdownChange() {
+  var new_artist = d3.select('#artistNames').property('value');
+  d3.select('#artistName').text(new_artist);
+  svg.selectAll('.song').filter(function (d) {
+    return d.artist === new_artist || d.features.includes(new_artist);
+  }).transition().duration(2000).ease(d3.easeElastic).attr('height', 0.8 * height).attr('y', height * 0.1);
+  svg.selectAll('.song').filter(function (d) {
+    return !(d.artist === new_artist || d.features.includes(new_artist));
+  }).transition().duration(300).ease(d3.easeCubic).attr('height', 0).attr('y', height / 2); // .attr('y', d =>
+  //   d.artist === new_artist || d.features.includes(new_artist)
+  //     ? height * 0.1
+  //     : height / 2
+  // )
+  // .attr('height', d =>
+  //   d.artist === new_artist || d.features.includes(new_artist)
+  //     ? 0.8 * height
+  //     : 0
+  // )
 }
-
-function doSmallTTs(_ref5) {
-  var _ref6 = _slicedToArray(_ref5, 1),
-      imgs = _ref6[0];
-
-  var updated = d3.selectAll('rect').data().map(function (d, i) {
-    return {
-      0: d[0],
-      1: d[1],
-      year: d.data.key,
-      data: d.data.values[Math.floor(i / 10)]
-    };
-  });
-  var tip = d3.tip().attr('class', 'd3-tip').html(function (d) {
-    var s = d.data.song;
-    var a = d.data.artist;
-    var r = d.data.rank;
-    var i = imgs[r];
-    return "<p class='important'>".concat(s, " by ").concat(a, "</p><p>(Rank #").concat(r, ")</p><img src=\"").concat(i, "\">");
-  }).style('left', function (d) {
-    return '0px';
-  }).style('top', '0px');
-  /* Invoke the tip in the context of your visualization */
-
-  svg.call(tip);
-  svg.selectAll('rect').data(updated).on('mouseover', tip.show).on('mouseout', tip.hide);
-}
-},{"d3":"../node_modules/d3/index.js","d3-tip":"../node_modules/d3-tip/index.js","../data/p4k_top200_2010.csv":"data/p4k_top200_2010.csv","../images/covers/*.jpg":"images/covers/*.jpg"}]},{},["scripts/stacked_bar_chart.js"], null)
-//# sourceMappingURL=/stacked_bar_chart.1eb36277.js.map
+},{"d3":"../node_modules/d3/index.js","autocomplete":"../node_modules/autocomplete/index.js","../data/p4k_top200_2010.csv":"data/p4k_top200_2010.csv","../data/artist_counts.csv":"data/artist_counts.csv"}]},{},["scripts/artist_appearances.js"], null)
+//# sourceMappingURL=/artist_appearances.4d2980e2.js.map

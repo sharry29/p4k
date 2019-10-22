@@ -28583,13 +28583,7 @@ d3.interval(function () {
 
 function circleTransition(idx) {
   var newOnes = svg.selectAll('g').filter(function (d) {
-    if ([d[0], d[1], d[2]].includes(labels[idx])) {
-      if (idx == 1) {
-        console.log(d);
-      }
-
-      return true;
-    }
+    return [d[0], d[1], d[2]].includes(labels[idx]);
   });
   var oldOnes = svg.selectAll('g').filter(function (d) {
     return ![d[0], d[1], d[2]].includes(labels[idx]);
