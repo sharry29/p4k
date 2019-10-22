@@ -30125,18 +30125,8 @@ var margin = {
 };
 var width = 700 - margin.left - margin.right;
 var height = 3 / 7 * width - margin.top - margin.bottom;
-var t = d3.transition().duration(1000).ease(d3.easeLinear); // let artists = [
-//   'Drake',
-//   'Future',
-//   'Beyoncé',
-//   'Frank Ocean',
-//   'Nicki Minaj',
-//   'Kanye West',
-//   'Rihanna',
-//   'Charli XCX',
-//   'Rick Ross',
-//   'Robyn'
-// ]
+var t = d3.transition().duration(1000).ease(d3.easeLinear);
+var top_artists = ['Drake (7 appearances)', 'Beyoncé (5 appearances)', 'Frank Ocean (4 appearances)', 'Nicki Minaj (4 appearances)', 'Kanye West (4 appearances)', 'Rihanna (4 appearances)', 'Future (3 appearances)', 'Charli XCX (3 appearances)', 'Rick Ross (3 appearances)', 'Robyn (3 appearances)'];
 
 function responsivefy(svg) {
   // get container + svg aspect ratio
@@ -30179,15 +30169,20 @@ function ready(_ref) {
       datapoints = _ref2[0],
       artists = _ref2[1];
 
-  var artist_names = artists.sort(function (a, b) {
-    var as = a.appearances + a.appearances_no_ft;
-    var bs = b.appearances + b.appearances_no_ft;
-    return as < bs ? 1 : as > bs ? -1 : 0;
+  var bottom_artist_names = artists // .filter(d => !top_artists.includes(d.artist))
+  .sort(function (a, b) {
+    // const as = a.appearances + a.appearances_no_ft
+    // const bs = b.appearances + b.appearances_no_ft
+    var as = a.artist.toLowerCase();
+    var bs = b.artist.toLowerCase();
+    return as > bs ? 1 : as < bs ? -1 : 0;
   }).map(function (d) {
-    return d.artist;
+    return d.artist + " (".concat(d.appearances, " appearance").concat(d.appearances == 1 ? '' : 's', ")");
   });
+  var artist_names = top_artists.concat(bottom_artist_names);
+  console.log(artist_names);
   d3.select('#artistNames').on('change', dropdownChange).selectAll('option').data(artist_names).enter().append('option').attr('value', function (d) {
-    return d;
+    return d.split('(')[0];
   }).text(function (d) {
     return d;
   });
@@ -30205,8 +30200,8 @@ function ready(_ref) {
 }
 
 function dropdownChange() {
-  var new_artist = d3.select('#artistNames').property('value');
-  d3.select('#artistName').text(new_artist);
+  var new_artist = d3.select('#artistNames').property('value').split(')')[0].trim(); // d3.select('#artistName').text(new_artist)
+
   svg.selectAll('.song').filter(function (d) {
     return d.artist === new_artist || d.features.includes(new_artist);
   }).transition().duration(2000).ease(d3.easeElastic).attr('height', 0.8 * height).attr('y', height * 0.1);

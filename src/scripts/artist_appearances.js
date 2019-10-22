@@ -12,18 +12,18 @@ var t = d3
   .duration(1000)
   .ease(d3.easeLinear)
 
-// let artists = [
-//   'Drake',
-//   'Future',
-//   'Beyoncé',
-//   'Frank Ocean',
-//   'Nicki Minaj',
-//   'Kanye West',
-//   'Rihanna',
-//   'Charli XCX',
-//   'Rick Ross',
-//   'Robyn'
-// ]
+const top_artists = [
+  'Drake (7 appearances)',
+  'Beyoncé (5 appearances)',
+  'Frank Ocean (4 appearances)',
+  'Nicki Minaj (4 appearances)',
+  'Kanye West (4 appearances)',
+  'Rihanna (4 appearances)',
+  'Future (3 appearances)',
+  'Charli XCX (3 appearances)',
+  'Rick Ross (3 appearances)',
+  'Robyn (3 appearances)'
+]
 
 function responsivefy(svg) {
   // get container + svg aspect ratio
@@ -88,13 +88,22 @@ Promise.all([
 ]).then(ready)
 
 function ready([datapoints, artists]) {
-  let artist_names = artists
+  let bottom_artist_names = artists
+    // .filter(d => !top_artists.includes(d.artist))
     .sort(function(a, b) {
-      const as = a.appearances + a.appearances_no_ft
-      const bs = b.appearances + b.appearances_no_ft
-      return as < bs ? 1 : as > bs ? -1 : 0
+      // const as = a.appearances + a.appearances_no_ft
+      // const bs = b.appearances + b.appearances_no_ft
+      const as = a.artist.toLowerCase()
+      const bs = b.artist.toLowerCase()
+      return as > bs ? 1 : as < bs ? -1 : 0
     })
-    .map(d => d.artist)
+    .map(
+      d =>
+        d.artist +
+        ` (${d.appearances} appearance${d.appearances == 1 ? '' : 's'})`
+    )
+  let artist_names = top_artists.concat(bottom_artist_names)
+  console.log(artist_names)
 
   d3.select('#artistNames')
     .on('change', dropdownChange)
@@ -102,7 +111,7 @@ function ready([datapoints, artists]) {
     .data(artist_names)
     .enter()
     .append('option')
-    .attr('value', d => d)
+    .attr('value', d => d.split('(')[0])
     .text(d => d)
 
   svg
@@ -154,8 +163,13 @@ function ready([datapoints, artists]) {
 }
 
 function dropdownChange() {
-  const new_artist = d3.select('#artistNames').property('value')
-  d3.select('#artistName').text(new_artist)
+  const new_artist = d3
+    .select('#artistNames')
+    .property('value')
+    .split(')')[0]
+    .trim()
+
+  // d3.select('#artistName').text(new_artist)
   svg
     .selectAll('.song')
     .filter(function(d) {
