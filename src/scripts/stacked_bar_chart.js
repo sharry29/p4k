@@ -3,7 +3,7 @@ import d3Tip from 'd3-tip'
 // import imgs from './../images/'
 d3.tip = d3Tip
 
-const margin = { top: 50, left: 60, right: 60, bottom: 50 }
+const margin = { top: 50, left: 80, right: 80, bottom: 50 }
 const width = 700 - margin.left - margin.right
 const height = (4 / 7) * width - margin.top - margin.bottom
 

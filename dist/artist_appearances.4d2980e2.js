@@ -30124,7 +30124,14 @@ var margin = {
   bottom: 100
 };
 var width = 700 - margin.left - margin.right;
-var height = 3 / 7 * width - margin.top - margin.bottom;
+var height = 4 / 7 * width - margin.top - margin.bottom;
+
+d3.selection.prototype.moveToFront = function () {
+  return this.each(function () {
+    this.parentNode.appendChild(this);
+  });
+};
+
 var t = d3.transition().duration(1000).ease(d3.easeLinear);
 var top_artists = ['Drake (7 appearances)', 'Beyoncé (5 appearances)', 'Frank Ocean (4 appearances)', 'Nicki Minaj (4 appearances)', 'Kanye West (4 appearances)', 'Rihanna (4 appearances)', 'Future (3 appearances)', 'Charli XCX (3 appearances)', 'Rick Ross (3 appearances)', 'Robyn (3 appearances)'];
 
@@ -30180,7 +30187,6 @@ function ready(_ref) {
     return d.artist + " (".concat(d.appearances, " appearance").concat(d.appearances == 1 ? '' : 's', ")");
   });
   var artist_names = top_artists.concat(bottom_artist_names);
-  console.log(artist_names);
   d3.select('#artistNames').on('change', dropdownChange).selectAll('option').data(artist_names).enter().append('option').attr('value', function (d) {
     return d.split('(')[0];
   }).text(function (d) {
@@ -30190,11 +30196,39 @@ function ready(_ref) {
   .append('line').attr('x1', 0).attr('x2', width).attr('y1', height / 2).attr('y2', height / 2).attr('stroke', 'grey');
   svg.append('text').text('#200').attr('id', 'worst').attr('x', 0).attr('y', height / 2).attr('dy', 100).attr('stroke', 'black').attr('text-anchor', 'middle').attr('alignment-baseline', 'bottom');
   svg.append('text').text('#1').attr('id', 'best').attr('x', width).attr('y', height / 2).attr('dy', 100).attr('text-anchor', 'middle').attr('alignment-baseline', 'bottom');
-  var songs = svg.selectAll('.song').data(datapoints).enter().append('rect').attr('x', function (d) {
-    return xPositionScale(+d.rank);
-  }).attr('y', height / 2).attr('class', 'song').attr('width', width / 100).attr('height', 0).attr('fill', function (d) {
+  svg.append('text').text('').attr('id', 'songLabel').attr('x', width / 2).attr('y', height + margin.bottom / 2).attr('text-anchor', 'middle');
+  var songs = svg.selectAll('g').data(datapoints).enter().append('g').attr('class', 'song').attr('transform', function (d) {
+    return "translate(".concat(xPositionScale(+d.rank), ", ").concat(height * 0.1, ")");
+  });
+  songs.append('text') // .attr('x', d => xPositionScale(+d.rank))
+  // .attr('y', height * 0.1)
+  .attr('dy', -10).attr('dx', width / 100).text(function (d) {
+    return "#".concat(d.rank);
+  }).attr('transform', 'rotate(-35)').attr('text-anchor', 'right').attr('font-size', 11).style('opacity', 0);
+  var song_windows = songs.append('g');
+  song_windows.append('image').attr('height', height * 0.9).attr('y', -height * 0.05).attr('width', 0).attr('x', -width / 10);
+  song_windows.append('rect') // .attr('x', d => xPositionScale(+d.rank))
+  .attr('y', height / 2).attr('width', width / 100).attr('height', 0).attr('fill', function (d) {
     return colorScale(d.year);
-  }).attr('stroke', 'black'); // .style('opacity', 0)
+  }).attr('stroke', 'white');
+  song_windows.on('mouseenter', function (d) {
+    console.log('hello');
+    var curr = d3.select(this).select('rect').attr('x');
+    d3.select(this.parentNode).raise();
+    d3.select(this).select('rect').transition().duration(100).ease(d3.easeLinear).attr('width', width / 4).attr('x', curr - width / 8).attr('height', height * 0.95).attr('y', -height * 0.05).on('end', function () {
+      d3.select(this.parentNode).select('image').raise().attr('x', -width / 10).attr('width', width / 5).attr('xlink:href', function (d) {
+        return d.img_link;
+      });
+    });
+    d3.select('#songLabel').text("".concat(d.song, " (").concat(d.year, ")"));
+  }).on('mouseleave', function (d) {
+    // d3.select(this.parentNode).lower()
+    d3.select(this).select('rect').transition().duration(100).attr('x', 0).attr('height', height * 0.8).attr('y', 0).attr('width', width / 100);
+    d3.select(this.parentNode).select('image').transition().duration(100).attr('width', 0).attr('x', 0).on('end', function () {
+      d3.select(this).lower().attr('xlink:href', null);
+    });
+    d3.select('#songLabel').text('');
+  }); // .style('opacity', 0)
 
   dropdownChange(); // .style('opacity', 1)
 }
@@ -30202,12 +30236,17 @@ function ready(_ref) {
 function dropdownChange() {
   var new_artist = d3.select('#artistNames').property('value').split(')')[0].trim(); // d3.select('#artistName').text(new_artist)
 
-  svg.selectAll('.song').filter(function (d) {
+  var toChange = svg.selectAll('.song').filter(function (d) {
     return d.artist === new_artist || d.features.includes(new_artist);
-  }).transition().duration(2000).ease(d3.easeElastic).attr('height', 0.8 * height).attr('y', height * 0.1);
-  svg.selectAll('.song').filter(function (d) {
+  });
+  console.log(toChange);
+  toChange.select('rect').transition().duration(2000).ease(d3.easeElastic).attr('height', 0.8 * height).attr('y', 0);
+  toChange.select('text').style('opacity', 1);
+  toChange = svg.selectAll('.song').filter(function (d) {
     return !(d.artist === new_artist || d.features.includes(new_artist));
-  }).transition().duration(300).ease(d3.easeCubic).attr('height', 0).attr('y', height / 2); // .attr('y', d =>
+  });
+  toChange.select('rect').transition().duration(300).ease(d3.easeCubic).attr('height', 0).attr('y', height / 2);
+  toChange.select('text').transition().duration(300).ease(d3.easeLinear).style('opacity', 0); // .attr('y', d =>
   //   d.artist === new_artist || d.features.includes(new_artist)
   //     ? height * 0.1
   //     : height / 2
