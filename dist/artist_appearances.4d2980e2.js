@@ -30125,6 +30125,7 @@ var margin = {
 };
 var width = 700 - margin.left - margin.right;
 var height = 4 / 7 * width - margin.top - margin.bottom;
+var RESTING_WIDTH = width / 50;
 
 d3.selection.prototype.moveToFront = function () {
   return this.each(function () {
@@ -30208,7 +30209,7 @@ function ready(_ref) {
   var song_windows = songs.append('g');
   song_windows.append('image').attr('height', height * 0.9).attr('y', -height * 0.05).attr('width', 0).attr('x', -width / 10);
   song_windows.append('rect') // .attr('x', d => xPositionScale(+d.rank))
-  .attr('y', height / 2).attr('width', width / 100).attr('height', 0).attr('fill', function (d) {
+  .attr('y', height / 2).attr('width', RESTING_WIDTH).attr('height', 0).attr('fill', function (d) {
     return colorScale(d.year);
   }).attr('stroke', 'white');
   song_windows.on('mouseenter', function (d) {
@@ -30223,7 +30224,7 @@ function ready(_ref) {
     d3.select('#songLabel').text("".concat(d.song, " (").concat(d.year, ")"));
   }).on('mouseleave', function (d) {
     // d3.select(this.parentNode).lower()
-    d3.select(this).select('rect').transition().duration(100).attr('x', 0).attr('height', height * 0.8).attr('y', 0).attr('width', width / 100);
+    d3.select(this).select('rect').transition().duration(100).attr('x', 0).attr('height', height * 0.8).attr('y', 0).attr('width', RESTING_WIDTH);
     d3.select(this.parentNode).select('image').transition().duration(100).attr('width', 0).attr('x', 0).on('end', function () {
       d3.select(this).lower().attr('xlink:href', null);
     });

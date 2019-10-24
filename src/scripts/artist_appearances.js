@@ -6,6 +6,8 @@ import autoComplete from 'autocomplete'
 const margin = { top: 50, left: 60, right: 60, bottom: 100 }
 const width = 700 - margin.left - margin.right
 const height = (4 / 7) * width - margin.top - margin.bottom
+
+const RESTING_WIDTH = width / 50
 d3.selection.prototype.moveToFront = function() {
   return this.each(function() {
     this.parentNode.appendChild(this)
@@ -190,7 +192,7 @@ function ready([datapoints, artists]) {
     .append('rect')
     // .attr('x', d => xPositionScale(+d.rank))
     .attr('y', height / 2)
-    .attr('width', width / 100)
+    .attr('width', RESTING_WIDTH)
     .attr('height', 0)
     .attr('fill', d => colorScale(d.year))
     .attr('stroke', 'white')
@@ -234,7 +236,7 @@ function ready([datapoints, artists]) {
         .attr('x', 0)
         .attr('height', height * 0.8)
         .attr('y', 0)
-        .attr('width', width / 100)
+        .attr('width', RESTING_WIDTH)
 
       d3.select(this.parentNode)
         .select('image')
