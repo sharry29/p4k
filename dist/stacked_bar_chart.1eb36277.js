@@ -28900,12 +28900,12 @@ module.exports = "/138.70ab4e2d.jpg";
 module.exports = "/139.a8c5ac4a.jpg";
 },{}],"images/covers/14.jpg":[function(require,module,exports) {
 module.exports = "/14.e7ea3832.jpg";
+},{}],"images/covers/140.jpg":[function(require,module,exports) {
+module.exports = "/140.a4cf4ccf.jpg";
 },{}],"images/covers/141.jpg":[function(require,module,exports) {
 module.exports = "/141.64a6bbab.jpg";
 },{}],"images/covers/142.jpg":[function(require,module,exports) {
 module.exports = "/142.ba5f5900.jpg";
-},{}],"images/covers/140.jpg":[function(require,module,exports) {
-module.exports = "/140.a4cf4ccf.jpg";
 },{}],"images/covers/143.jpg":[function(require,module,exports) {
 module.exports = "/143.a0e63cde.jpg";
 },{}],"images/covers/144.jpg":[function(require,module,exports) {
@@ -28916,22 +28916,22 @@ module.exports = "/145.33c02146.jpg";
 module.exports = "/146.aeb5cb11.jpg";
 },{}],"images/covers/147.jpg":[function(require,module,exports) {
 module.exports = "/147.fe90b5da.jpg";
-},{}],"images/covers/149.jpg":[function(require,module,exports) {
-module.exports = "/149.09e5096c.jpg";
 },{}],"images/covers/148.jpg":[function(require,module,exports) {
 module.exports = "/148.6040718a.jpg";
+},{}],"images/covers/149.jpg":[function(require,module,exports) {
+module.exports = "/149.09e5096c.jpg";
 },{}],"images/covers/15.jpg":[function(require,module,exports) {
 module.exports = "/15.d0e255e4.jpg";
 },{}],"images/covers/150.jpg":[function(require,module,exports) {
 module.exports = "/150.2bf424f2.jpg";
 },{}],"images/covers/151.jpg":[function(require,module,exports) {
 module.exports = "/151.3678e8b0.jpg";
+},{}],"images/covers/152.jpg":[function(require,module,exports) {
+module.exports = "/152.e930ff49.jpg";
 },{}],"images/covers/153.jpg":[function(require,module,exports) {
 module.exports = "/153.07b0fab9.jpg";
 },{}],"images/covers/154.jpg":[function(require,module,exports) {
 module.exports = "/154.d0546f14.jpg";
-},{}],"images/covers/152.jpg":[function(require,module,exports) {
-module.exports = "/152.e930ff49.jpg";
 },{}],"images/covers/155.jpg":[function(require,module,exports) {
 module.exports = "/155.f95870b2.jpg";
 },{}],"images/covers/156.jpg":[function(require,module,exports) {
@@ -29016,12 +29016,12 @@ module.exports = "/190.b5b37ef1.jpg";
 module.exports = "/191.d37aad6a.jpg";
 },{}],"images/covers/192.jpg":[function(require,module,exports) {
 module.exports = "/192.14546c4e.jpg";
+},{}],"images/covers/193.jpg":[function(require,module,exports) {
+module.exports = "/193.bdc9954b.jpg";
 },{}],"images/covers/194.jpg":[function(require,module,exports) {
 module.exports = "/194.5887a0cc.jpg";
 },{}],"images/covers/195.jpg":[function(require,module,exports) {
 module.exports = "/195.ea0c0b04.jpg";
-},{}],"images/covers/193.jpg":[function(require,module,exports) {
-module.exports = "/193.bdc9954b.jpg";
 },{}],"images/covers/196.jpg":[function(require,module,exports) {
 module.exports = "/196.0d8a71eb.jpg";
 },{}],"images/covers/197.jpg":[function(require,module,exports) {
@@ -29040,10 +29040,10 @@ module.exports = "/200.43ae34aa.jpg";
 module.exports = "/21.f0cf5b1d.jpg";
 },{}],"images/covers/22.jpg":[function(require,module,exports) {
 module.exports = "/22.37449fe1.jpg";
-},{}],"images/covers/23.jpg":[function(require,module,exports) {
-module.exports = "/23.209aec25.jpg";
 },{}],"images/covers/24.jpg":[function(require,module,exports) {
 module.exports = "/24.ceeeb482.jpg";
+},{}],"images/covers/23.jpg":[function(require,module,exports) {
+module.exports = "/23.209aec25.jpg";
 },{}],"images/covers/25.jpg":[function(require,module,exports) {
 module.exports = "/25.08f6c81d.jpg";
 },{}],"images/covers/26.jpg":[function(require,module,exports) {
@@ -29064,6 +29064,8 @@ module.exports = "/31.e086c492.jpg";
 module.exports = "/32.b51e463f.jpg";
 },{}],"images/covers/33.jpg":[function(require,module,exports) {
 module.exports = "/33.41e288b0.jpg";
+},{}],"images/covers/34.jpg":[function(require,module,exports) {
+module.exports = "/34.4f875a13.jpg";
 },{}],"images/covers/35.jpg":[function(require,module,exports) {
 module.exports = "/35.07299054.jpg";
 },{}],"images/covers/36.jpg":[function(require,module,exports) {
@@ -29102,16 +29104,14 @@ module.exports = "/5.f9662fcb.jpg";
 module.exports = "/50.057ec1d1.jpg";
 },{}],"images/covers/51.jpg":[function(require,module,exports) {
 module.exports = "/51.aed7b5ee.jpg";
-},{}],"images/covers/53.jpg":[function(require,module,exports) {
-module.exports = "/53.088a5b37.jpg";
 },{}],"images/covers/52.jpg":[function(require,module,exports) {
 module.exports = "/52.289c5791.jpg";
-},{}],"images/covers/55.jpg":[function(require,module,exports) {
-module.exports = "/55.843257fc.jpg";
+},{}],"images/covers/53.jpg":[function(require,module,exports) {
+module.exports = "/53.088a5b37.jpg";
 },{}],"images/covers/54.jpg":[function(require,module,exports) {
 module.exports = "/54.d14cd6b4.jpg";
-},{}],"images/covers/34.jpg":[function(require,module,exports) {
-module.exports = "/34.4f875a13.jpg";
+},{}],"images/covers/55.jpg":[function(require,module,exports) {
+module.exports = "/55.843257fc.jpg";
 },{}],"images/covers/56.jpg":[function(require,module,exports) {
 module.exports = "/56.4bba3bcc.jpg";
 },{}],"images/covers/57.jpg":[function(require,module,exports) {
@@ -29144,12 +29144,12 @@ module.exports = "/68.4880e4e2.jpg";
 module.exports = "/69.13fb4c33.jpg";
 },{}],"images/covers/7.jpg":[function(require,module,exports) {
 module.exports = "/7.400e7201.jpg";
+},{}],"images/covers/70.jpg":[function(require,module,exports) {
+module.exports = "/70.593fd41c.jpg";
 },{}],"images/covers/71.jpg":[function(require,module,exports) {
 module.exports = "/71.6ca2f6ae.jpg";
 },{}],"images/covers/72.jpg":[function(require,module,exports) {
 module.exports = "/72.eb024e22.jpg";
-},{}],"images/covers/70.jpg":[function(require,module,exports) {
-module.exports = "/70.593fd41c.jpg";
 },{}],"images/covers/73.jpg":[function(require,module,exports) {
 module.exports = "/73.6d55f75c.jpg";
 },{}],"images/covers/74.jpg":[function(require,module,exports) {
@@ -29226,12 +29226,12 @@ module.exports = "/Lil B_Wonton Soup.c106ead6.jpg";
 module.exports = "/LilB_WontonSoup.12750c96.jpg";
 },{}],"images/covers/Nilüfer Yanya_Baby Luv.jpg":[function(require,module,exports) {
 module.exports = "/Nilüfer Yanya_Baby Luv.e9047ab5.jpg";
+},{}],"images/covers/NilüferYanya_BabyLuv.jpg":[function(require,module,exports) {
+module.exports = "/NilüferYanya_BabyLuv.a0fd91db.jpg";
 },{}],"images/covers/Rico Nasty_Smack a Bitch.jpg":[function(require,module,exports) {
 module.exports = "/Rico Nasty_Smack a Bitch.ee905e63.jpg";
 },{}],"images/covers/RicoNasty_SmackaBitch.jpg":[function(require,module,exports) {
 module.exports = "/RicoNasty_SmackaBitch.eb297bd5.jpg";
-},{}],"images/covers/NilüferYanya_BabyLuv.jpg":[function(require,module,exports) {
-module.exports = "/NilüferYanya_BabyLuv.a0fd91db.jpg";
 },{}],"images/covers/Stormzy_Big for Your Boots.jpg":[function(require,module,exports) {
 module.exports = "/Stormzy_Big for Your Boots.25742be7.jpg";
 },{}],"images/covers/Stormzy_BigforYourBoots.jpg":[function(require,module,exports) {
@@ -29456,9 +29456,9 @@ module.exports = {
   "Lil B_Wonton Soup": require("./Lil B_Wonton Soup.jpg"),
   "LilB_WontonSoup": require("./LilB_WontonSoup.jpg"),
   "Nilüfer Yanya_Baby Luv": require("./Nilüfer Yanya_Baby Luv.jpg"),
+  "NilüferYanya_BabyLuv": require("./NilüferYanya_BabyLuv.jpg"),
   "Rico Nasty_Smack a Bitch": require("./Rico Nasty_Smack a Bitch.jpg"),
   "RicoNasty_SmackaBitch": require("./RicoNasty_SmackaBitch.jpg"),
-  "NilüferYanya_BabyLuv": require("./NilüferYanya_BabyLuv.jpg"),
   "Stormzy_Big for Your Boots": require("./Stormzy_Big for Your Boots.jpg"),
   "Stormzy_BigforYourBoots": require("./Stormzy_BigforYourBoots.jpg"),
   "Tame Impala_Feels Like We Only Go Backwards": require("./Tame Impala_Feels Like We Only Go Backwards.jpg"),
@@ -29468,7 +29468,7 @@ module.exports = {
   "dvsn_The Line": require("./dvsn_The Line.jpg"),
   "dvsn_TheLine": require("./dvsn_TheLine.jpg")
 };
-},{"./1.jpg":"images/covers/1.jpg","./10.jpg":"images/covers/10.jpg","./100.jpg":"images/covers/100.jpg","./101.jpg":"images/covers/101.jpg","./102.jpg":"images/covers/102.jpg","./103.jpg":"images/covers/103.jpg","./104.jpg":"images/covers/104.jpg","./105.jpg":"images/covers/105.jpg","./106.jpg":"images/covers/106.jpg","./107.jpg":"images/covers/107.jpg","./108.jpg":"images/covers/108.jpg","./109.jpg":"images/covers/109.jpg","./11.jpg":"images/covers/11.jpg","./110.jpg":"images/covers/110.jpg","./111.jpg":"images/covers/111.jpg","./112.jpg":"images/covers/112.jpg","./113.jpg":"images/covers/113.jpg","./114.jpg":"images/covers/114.jpg","./115.jpg":"images/covers/115.jpg","./116.jpg":"images/covers/116.jpg","./117.jpg":"images/covers/117.jpg","./118.jpg":"images/covers/118.jpg","./119.jpg":"images/covers/119.jpg","./12.jpg":"images/covers/12.jpg","./120.jpg":"images/covers/120.jpg","./121.jpg":"images/covers/121.jpg","./122.jpg":"images/covers/122.jpg","./123.jpg":"images/covers/123.jpg","./124.jpg":"images/covers/124.jpg","./125.jpg":"images/covers/125.jpg","./126.jpg":"images/covers/126.jpg","./127.jpg":"images/covers/127.jpg","./128.jpg":"images/covers/128.jpg","./129.jpg":"images/covers/129.jpg","./13.jpg":"images/covers/13.jpg","./130.jpg":"images/covers/130.jpg","./131.jpg":"images/covers/131.jpg","./132.jpg":"images/covers/132.jpg","./133.jpg":"images/covers/133.jpg","./134.jpg":"images/covers/134.jpg","./135.jpg":"images/covers/135.jpg","./136.jpg":"images/covers/136.jpg","./137.jpg":"images/covers/137.jpg","./138.jpg":"images/covers/138.jpg","./139.jpg":"images/covers/139.jpg","./14.jpg":"images/covers/14.jpg","./141.jpg":"images/covers/141.jpg","./142.jpg":"images/covers/142.jpg","./140.jpg":"images/covers/140.jpg","./143.jpg":"images/covers/143.jpg","./144.jpg":"images/covers/144.jpg","./145.jpg":"images/covers/145.jpg","./146.jpg":"images/covers/146.jpg","./147.jpg":"images/covers/147.jpg","./149.jpg":"images/covers/149.jpg","./148.jpg":"images/covers/148.jpg","./15.jpg":"images/covers/15.jpg","./150.jpg":"images/covers/150.jpg","./151.jpg":"images/covers/151.jpg","./153.jpg":"images/covers/153.jpg","./154.jpg":"images/covers/154.jpg","./152.jpg":"images/covers/152.jpg","./155.jpg":"images/covers/155.jpg","./156.jpg":"images/covers/156.jpg","./157.jpg":"images/covers/157.jpg","./158.jpg":"images/covers/158.jpg","./159.jpg":"images/covers/159.jpg","./16.jpg":"images/covers/16.jpg","./160.jpg":"images/covers/160.jpg","./161.jpg":"images/covers/161.jpg","./162.jpg":"images/covers/162.jpg","./163.jpg":"images/covers/163.jpg","./164.jpg":"images/covers/164.jpg","./165.jpg":"images/covers/165.jpg","./166.jpg":"images/covers/166.jpg","./167.jpg":"images/covers/167.jpg","./168.jpg":"images/covers/168.jpg","./169.jpg":"images/covers/169.jpg","./17.jpg":"images/covers/17.jpg","./170.jpg":"images/covers/170.jpg","./171.jpg":"images/covers/171.jpg","./172.jpg":"images/covers/172.jpg","./173.jpg":"images/covers/173.jpg","./174.jpg":"images/covers/174.jpg","./175.jpg":"images/covers/175.jpg","./176.jpg":"images/covers/176.jpg","./177.jpg":"images/covers/177.jpg","./178.jpg":"images/covers/178.jpg","./179.jpg":"images/covers/179.jpg","./18.jpg":"images/covers/18.jpg","./180.jpg":"images/covers/180.jpg","./181.jpg":"images/covers/181.jpg","./182.jpg":"images/covers/182.jpg","./183.jpg":"images/covers/183.jpg","./184.jpg":"images/covers/184.jpg","./185.jpg":"images/covers/185.jpg","./186.jpg":"images/covers/186.jpg","./187.jpg":"images/covers/187.jpg","./188.jpg":"images/covers/188.jpg","./189.jpg":"images/covers/189.jpg","./19.jpg":"images/covers/19.jpg","./190.jpg":"images/covers/190.jpg","./191.jpg":"images/covers/191.jpg","./192.jpg":"images/covers/192.jpg","./194.jpg":"images/covers/194.jpg","./195.jpg":"images/covers/195.jpg","./193.jpg":"images/covers/193.jpg","./196.jpg":"images/covers/196.jpg","./197.jpg":"images/covers/197.jpg","./198.jpg":"images/covers/198.jpg","./199.jpg":"images/covers/199.jpg","./2.jpg":"images/covers/2.jpg","./20.jpg":"images/covers/20.jpg","./200.jpg":"images/covers/200.jpg","./21.jpg":"images/covers/21.jpg","./22.jpg":"images/covers/22.jpg","./23.jpg":"images/covers/23.jpg","./24.jpg":"images/covers/24.jpg","./25.jpg":"images/covers/25.jpg","./26.jpg":"images/covers/26.jpg","./27.jpg":"images/covers/27.jpg","./28.jpg":"images/covers/28.jpg","./29.jpg":"images/covers/29.jpg","./3.jpg":"images/covers/3.jpg","./30.jpg":"images/covers/30.jpg","./31.jpg":"images/covers/31.jpg","./32.jpg":"images/covers/32.jpg","./33.jpg":"images/covers/33.jpg","./35.jpg":"images/covers/35.jpg","./36.jpg":"images/covers/36.jpg","./37.jpg":"images/covers/37.jpg","./38.jpg":"images/covers/38.jpg","./39.jpg":"images/covers/39.jpg","./4.jpg":"images/covers/4.jpg","./40.jpg":"images/covers/40.jpg","./41.jpg":"images/covers/41.jpg","./42.jpg":"images/covers/42.jpg","./43.jpg":"images/covers/43.jpg","./44.jpg":"images/covers/44.jpg","./45.jpg":"images/covers/45.jpg","./46.jpg":"images/covers/46.jpg","./47.jpg":"images/covers/47.jpg","./48.jpg":"images/covers/48.jpg","./49.jpg":"images/covers/49.jpg","./5.jpg":"images/covers/5.jpg","./50.jpg":"images/covers/50.jpg","./51.jpg":"images/covers/51.jpg","./53.jpg":"images/covers/53.jpg","./52.jpg":"images/covers/52.jpg","./55.jpg":"images/covers/55.jpg","./54.jpg":"images/covers/54.jpg","./34.jpg":"images/covers/34.jpg","./56.jpg":"images/covers/56.jpg","./57.jpg":"images/covers/57.jpg","./58.jpg":"images/covers/58.jpg","./59.jpg":"images/covers/59.jpg","./6.jpg":"images/covers/6.jpg","./60.jpg":"images/covers/60.jpg","./61.jpg":"images/covers/61.jpg","./62.jpg":"images/covers/62.jpg","./63.jpg":"images/covers/63.jpg","./64.jpg":"images/covers/64.jpg","./65.jpg":"images/covers/65.jpg","./66.jpg":"images/covers/66.jpg","./67.jpg":"images/covers/67.jpg","./68.jpg":"images/covers/68.jpg","./69.jpg":"images/covers/69.jpg","./7.jpg":"images/covers/7.jpg","./71.jpg":"images/covers/71.jpg","./72.jpg":"images/covers/72.jpg","./70.jpg":"images/covers/70.jpg","./73.jpg":"images/covers/73.jpg","./74.jpg":"images/covers/74.jpg","./75.jpg":"images/covers/75.jpg","./76.jpg":"images/covers/76.jpg","./77.jpg":"images/covers/77.jpg","./78.jpg":"images/covers/78.jpg","./79.jpg":"images/covers/79.jpg","./8.jpg":"images/covers/8.jpg","./80.jpg":"images/covers/80.jpg","./81.jpg":"images/covers/81.jpg","./82.jpg":"images/covers/82.jpg","./83.jpg":"images/covers/83.jpg","./84.jpg":"images/covers/84.jpg","./85.jpg":"images/covers/85.jpg","./86.jpg":"images/covers/86.jpg","./87.jpg":"images/covers/87.jpg","./88.jpg":"images/covers/88.jpg","./89.jpg":"images/covers/89.jpg","./9.jpg":"images/covers/9.jpg","./90.jpg":"images/covers/90.jpg","./91.jpg":"images/covers/91.jpg","./92.jpg":"images/covers/92.jpg","./93.jpg":"images/covers/93.jpg","./94.jpg":"images/covers/94.jpg","./95.jpg":"images/covers/95.jpg","./96.jpg":"images/covers/96.jpg","./97.jpg":"images/covers/97.jpg","./98.jpg":"images/covers/98.jpg","./99.jpg":"images/covers/99.jpg","./Avicii_Levels.jpg":"images/covers/Avicii_Levels.jpg","./Cloud Nothings_I'm Not Part of Me.jpg":"images/covers/Cloud Nothings_I'm Not Part of Me.jpg","./CloudNothings_I'mNotPartofMe.jpg":"images/covers/CloudNothings_I'mNotPartofMe.jpg","./Icona Pop_I Love It [ft. Charli XCX].jpg":"images/covers/Icona Pop_I Love It [ft. Charli XCX].jpg","./IconaPop_ILoveIt[ft.CharliXCX].jpg":"images/covers/Icona Pop_I Love It [ft. Charli XCX].jpg","./John Maus_Believer.jpg":"images/covers/John Maus_Believer.jpg","./JohnMaus_Believer.jpg":"images/covers/JohnMaus_Believer.jpg","./Lil B_Wonton Soup.jpg":"images/covers/Lil B_Wonton Soup.jpg","./LilB_WontonSoup.jpg":"images/covers/LilB_WontonSoup.jpg","./Nilüfer Yanya_Baby Luv.jpg":"images/covers/Nilüfer Yanya_Baby Luv.jpg","./Rico Nasty_Smack a Bitch.jpg":"images/covers/Rico Nasty_Smack a Bitch.jpg","./RicoNasty_SmackaBitch.jpg":"images/covers/RicoNasty_SmackaBitch.jpg","./NilüferYanya_BabyLuv.jpg":"images/covers/NilüferYanya_BabyLuv.jpg","./Stormzy_Big for Your Boots.jpg":"images/covers/Stormzy_Big for Your Boots.jpg","./Stormzy_BigforYourBoots.jpg":"images/covers/Stormzy_BigforYourBoots.jpg","./Tame Impala_Feels Like We Only Go Backwards.jpg":"images/covers/Tame Impala_Feels Like We Only Go Backwards.jpg","./TameImpala_FeelsLikeWeOnlyGoBackwards.jpg":"images/covers/TameImpala_FeelsLikeWeOnlyGoBackwards.jpg","./Ty Dolla $ign_Paranoid [ft. B.o.B].jpg":"images/covers/Icona Pop_I Love It [ft. Charli XCX].jpg","./TyDolla$ign_Paranoid[ft.B.o.B].jpg":"images/covers/Icona Pop_I Love It [ft. Charli XCX].jpg","./dvsn_The Line.jpg":"images/covers/dvsn_The Line.jpg","./dvsn_TheLine.jpg":"images/covers/dvsn_TheLine.jpg"}],"scripts/stacked_bar_chart.js":[function(require,module,exports) {
+},{"./1.jpg":"images/covers/1.jpg","./10.jpg":"images/covers/10.jpg","./100.jpg":"images/covers/100.jpg","./101.jpg":"images/covers/101.jpg","./102.jpg":"images/covers/102.jpg","./103.jpg":"images/covers/103.jpg","./104.jpg":"images/covers/104.jpg","./105.jpg":"images/covers/105.jpg","./106.jpg":"images/covers/106.jpg","./107.jpg":"images/covers/107.jpg","./108.jpg":"images/covers/108.jpg","./109.jpg":"images/covers/109.jpg","./11.jpg":"images/covers/11.jpg","./110.jpg":"images/covers/110.jpg","./111.jpg":"images/covers/111.jpg","./112.jpg":"images/covers/112.jpg","./113.jpg":"images/covers/113.jpg","./114.jpg":"images/covers/114.jpg","./115.jpg":"images/covers/115.jpg","./116.jpg":"images/covers/116.jpg","./117.jpg":"images/covers/117.jpg","./118.jpg":"images/covers/118.jpg","./119.jpg":"images/covers/119.jpg","./12.jpg":"images/covers/12.jpg","./120.jpg":"images/covers/120.jpg","./121.jpg":"images/covers/121.jpg","./122.jpg":"images/covers/122.jpg","./123.jpg":"images/covers/123.jpg","./124.jpg":"images/covers/124.jpg","./125.jpg":"images/covers/125.jpg","./126.jpg":"images/covers/126.jpg","./127.jpg":"images/covers/127.jpg","./128.jpg":"images/covers/128.jpg","./129.jpg":"images/covers/129.jpg","./13.jpg":"images/covers/13.jpg","./130.jpg":"images/covers/130.jpg","./131.jpg":"images/covers/131.jpg","./132.jpg":"images/covers/132.jpg","./133.jpg":"images/covers/133.jpg","./134.jpg":"images/covers/134.jpg","./135.jpg":"images/covers/135.jpg","./136.jpg":"images/covers/136.jpg","./137.jpg":"images/covers/137.jpg","./138.jpg":"images/covers/138.jpg","./139.jpg":"images/covers/139.jpg","./14.jpg":"images/covers/14.jpg","./140.jpg":"images/covers/140.jpg","./141.jpg":"images/covers/141.jpg","./142.jpg":"images/covers/142.jpg","./143.jpg":"images/covers/143.jpg","./144.jpg":"images/covers/144.jpg","./145.jpg":"images/covers/145.jpg","./146.jpg":"images/covers/146.jpg","./147.jpg":"images/covers/147.jpg","./148.jpg":"images/covers/148.jpg","./149.jpg":"images/covers/149.jpg","./15.jpg":"images/covers/15.jpg","./150.jpg":"images/covers/150.jpg","./151.jpg":"images/covers/151.jpg","./152.jpg":"images/covers/152.jpg","./153.jpg":"images/covers/153.jpg","./154.jpg":"images/covers/154.jpg","./155.jpg":"images/covers/155.jpg","./156.jpg":"images/covers/156.jpg","./157.jpg":"images/covers/157.jpg","./158.jpg":"images/covers/158.jpg","./159.jpg":"images/covers/159.jpg","./16.jpg":"images/covers/16.jpg","./160.jpg":"images/covers/160.jpg","./161.jpg":"images/covers/161.jpg","./162.jpg":"images/covers/162.jpg","./163.jpg":"images/covers/163.jpg","./164.jpg":"images/covers/164.jpg","./165.jpg":"images/covers/165.jpg","./166.jpg":"images/covers/166.jpg","./167.jpg":"images/covers/167.jpg","./168.jpg":"images/covers/168.jpg","./169.jpg":"images/covers/169.jpg","./17.jpg":"images/covers/17.jpg","./170.jpg":"images/covers/170.jpg","./171.jpg":"images/covers/171.jpg","./172.jpg":"images/covers/172.jpg","./173.jpg":"images/covers/173.jpg","./174.jpg":"images/covers/174.jpg","./175.jpg":"images/covers/175.jpg","./176.jpg":"images/covers/176.jpg","./177.jpg":"images/covers/177.jpg","./178.jpg":"images/covers/178.jpg","./179.jpg":"images/covers/179.jpg","./18.jpg":"images/covers/18.jpg","./180.jpg":"images/covers/180.jpg","./181.jpg":"images/covers/181.jpg","./182.jpg":"images/covers/182.jpg","./183.jpg":"images/covers/183.jpg","./184.jpg":"images/covers/184.jpg","./185.jpg":"images/covers/185.jpg","./186.jpg":"images/covers/186.jpg","./187.jpg":"images/covers/187.jpg","./188.jpg":"images/covers/188.jpg","./189.jpg":"images/covers/189.jpg","./19.jpg":"images/covers/19.jpg","./190.jpg":"images/covers/190.jpg","./191.jpg":"images/covers/191.jpg","./192.jpg":"images/covers/192.jpg","./193.jpg":"images/covers/193.jpg","./194.jpg":"images/covers/194.jpg","./195.jpg":"images/covers/195.jpg","./196.jpg":"images/covers/196.jpg","./197.jpg":"images/covers/197.jpg","./198.jpg":"images/covers/198.jpg","./199.jpg":"images/covers/199.jpg","./2.jpg":"images/covers/2.jpg","./20.jpg":"images/covers/20.jpg","./200.jpg":"images/covers/200.jpg","./21.jpg":"images/covers/21.jpg","./22.jpg":"images/covers/22.jpg","./24.jpg":"images/covers/24.jpg","./23.jpg":"images/covers/23.jpg","./25.jpg":"images/covers/25.jpg","./26.jpg":"images/covers/26.jpg","./27.jpg":"images/covers/27.jpg","./28.jpg":"images/covers/28.jpg","./29.jpg":"images/covers/29.jpg","./3.jpg":"images/covers/3.jpg","./30.jpg":"images/covers/30.jpg","./31.jpg":"images/covers/31.jpg","./32.jpg":"images/covers/32.jpg","./33.jpg":"images/covers/33.jpg","./34.jpg":"images/covers/34.jpg","./35.jpg":"images/covers/35.jpg","./36.jpg":"images/covers/36.jpg","./37.jpg":"images/covers/37.jpg","./38.jpg":"images/covers/38.jpg","./39.jpg":"images/covers/39.jpg","./4.jpg":"images/covers/4.jpg","./40.jpg":"images/covers/40.jpg","./41.jpg":"images/covers/41.jpg","./42.jpg":"images/covers/42.jpg","./43.jpg":"images/covers/43.jpg","./44.jpg":"images/covers/44.jpg","./45.jpg":"images/covers/45.jpg","./46.jpg":"images/covers/46.jpg","./47.jpg":"images/covers/47.jpg","./48.jpg":"images/covers/48.jpg","./49.jpg":"images/covers/49.jpg","./5.jpg":"images/covers/5.jpg","./50.jpg":"images/covers/50.jpg","./51.jpg":"images/covers/51.jpg","./52.jpg":"images/covers/52.jpg","./53.jpg":"images/covers/53.jpg","./54.jpg":"images/covers/54.jpg","./55.jpg":"images/covers/55.jpg","./56.jpg":"images/covers/56.jpg","./57.jpg":"images/covers/57.jpg","./58.jpg":"images/covers/58.jpg","./59.jpg":"images/covers/59.jpg","./6.jpg":"images/covers/6.jpg","./60.jpg":"images/covers/60.jpg","./61.jpg":"images/covers/61.jpg","./62.jpg":"images/covers/62.jpg","./63.jpg":"images/covers/63.jpg","./64.jpg":"images/covers/64.jpg","./65.jpg":"images/covers/65.jpg","./66.jpg":"images/covers/66.jpg","./67.jpg":"images/covers/67.jpg","./68.jpg":"images/covers/68.jpg","./69.jpg":"images/covers/69.jpg","./7.jpg":"images/covers/7.jpg","./70.jpg":"images/covers/70.jpg","./71.jpg":"images/covers/71.jpg","./72.jpg":"images/covers/72.jpg","./73.jpg":"images/covers/73.jpg","./74.jpg":"images/covers/74.jpg","./75.jpg":"images/covers/75.jpg","./76.jpg":"images/covers/76.jpg","./77.jpg":"images/covers/77.jpg","./78.jpg":"images/covers/78.jpg","./79.jpg":"images/covers/79.jpg","./8.jpg":"images/covers/8.jpg","./80.jpg":"images/covers/80.jpg","./81.jpg":"images/covers/81.jpg","./82.jpg":"images/covers/82.jpg","./83.jpg":"images/covers/83.jpg","./84.jpg":"images/covers/84.jpg","./85.jpg":"images/covers/85.jpg","./86.jpg":"images/covers/86.jpg","./87.jpg":"images/covers/87.jpg","./88.jpg":"images/covers/88.jpg","./89.jpg":"images/covers/89.jpg","./9.jpg":"images/covers/9.jpg","./90.jpg":"images/covers/90.jpg","./91.jpg":"images/covers/91.jpg","./92.jpg":"images/covers/92.jpg","./93.jpg":"images/covers/93.jpg","./94.jpg":"images/covers/94.jpg","./95.jpg":"images/covers/95.jpg","./96.jpg":"images/covers/96.jpg","./97.jpg":"images/covers/97.jpg","./98.jpg":"images/covers/98.jpg","./99.jpg":"images/covers/99.jpg","./Avicii_Levels.jpg":"images/covers/Avicii_Levels.jpg","./Cloud Nothings_I'm Not Part of Me.jpg":"images/covers/Cloud Nothings_I'm Not Part of Me.jpg","./CloudNothings_I'mNotPartofMe.jpg":"images/covers/CloudNothings_I'mNotPartofMe.jpg","./Icona Pop_I Love It [ft. Charli XCX].jpg":"images/covers/Icona Pop_I Love It [ft. Charli XCX].jpg","./IconaPop_ILoveIt[ft.CharliXCX].jpg":"images/covers/Icona Pop_I Love It [ft. Charli XCX].jpg","./John Maus_Believer.jpg":"images/covers/John Maus_Believer.jpg","./JohnMaus_Believer.jpg":"images/covers/JohnMaus_Believer.jpg","./Lil B_Wonton Soup.jpg":"images/covers/Lil B_Wonton Soup.jpg","./LilB_WontonSoup.jpg":"images/covers/LilB_WontonSoup.jpg","./Nilüfer Yanya_Baby Luv.jpg":"images/covers/Nilüfer Yanya_Baby Luv.jpg","./NilüferYanya_BabyLuv.jpg":"images/covers/NilüferYanya_BabyLuv.jpg","./Rico Nasty_Smack a Bitch.jpg":"images/covers/Rico Nasty_Smack a Bitch.jpg","./RicoNasty_SmackaBitch.jpg":"images/covers/RicoNasty_SmackaBitch.jpg","./Stormzy_Big for Your Boots.jpg":"images/covers/Stormzy_Big for Your Boots.jpg","./Stormzy_BigforYourBoots.jpg":"images/covers/Stormzy_BigforYourBoots.jpg","./Tame Impala_Feels Like We Only Go Backwards.jpg":"images/covers/Tame Impala_Feels Like We Only Go Backwards.jpg","./TameImpala_FeelsLikeWeOnlyGoBackwards.jpg":"images/covers/TameImpala_FeelsLikeWeOnlyGoBackwards.jpg","./Ty Dolla $ign_Paranoid [ft. B.o.B].jpg":"images/covers/Icona Pop_I Love It [ft. Charli XCX].jpg","./TyDolla$ign_Paranoid[ft.B.o.B].jpg":"images/covers/Icona Pop_I Love It [ft. Charli XCX].jpg","./dvsn_The Line.jpg":"images/covers/dvsn_The Line.jpg","./dvsn_TheLine.jpg":"images/covers/dvsn_TheLine.jpg"}],"scripts/stacked_bar_chart.js":[function(require,module,exports) {
 "use strict";
 
 var d3 = _interopRequireWildcard(require("d3"));
